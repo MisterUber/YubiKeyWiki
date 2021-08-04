@@ -1,0 +1,19 @@
+title: YubiKey Wiki
+lang: de
+description: Umfassendes deutschsprachiges Wiki zum YubiKey
+
+remote_theme: rundocs/jekyll-rtd-theme
+markdown: kramdown
+
+readme_index:
+  with_frontmatter: true
+
+exclude:
+  - Makefile
+  - Gemfile
+  - Gemfile.lock
+
+plugins:
+  - jemoji
+  - jekyll-avatar
+  - jekyll-mentions
