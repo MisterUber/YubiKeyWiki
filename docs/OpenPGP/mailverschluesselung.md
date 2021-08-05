@@ -1009,9 +1009,9 @@ Wenn der YubiKey erkannt wird, wird anhand der [hinterlegten
 URL](/yubikey4hk/funktionen/openpgp#metadaten_auf_den_yubikey_laden) der
 zugehörige öffentlichen Schlüssel importiert. Dies muss noch mit dem
 grünen Button *Import* bestätigt werden.  
-![](/images/openpgp/7_openkeychain_key_hinzufuegen.jpg)  
+![](/images/openpgp/7_openkeychain_key_hinzufuegen.jpg){: width="200px"}  
 Der Schlüssel wird nun importiert:  
-![](/images/openpgp/8_openkeychain_key_hinzugefuegt.jpg)  
+![](/images/openpgp/8_openkeychain_key_hinzugefuegt.jpg){: width="200px"}  
 Wenn man nun auf *Schlüssel ansehen* klickt, kann man den
 Schlüsselstatus überprüfen. Hier sollte stehen, das der Schlüssel
 *stripped* ist und zum Signieren und Verschlüsseln geeignet ist.
@@ -1030,7 +1030,7 @@ Es gibt drei Möglichkeiten einen fremden Schlüssel hinzuzufügen:
   - Schlüssel suchen
   - Aus Datei importieren
 
-![](/images/openpgp/10_openkeychain_fremden_schluessel_import.jpg)  
+![](/images/openpgp/10_openkeychain_fremden_schluessel_import.jpg){: width="200px"}   
 Den QR-Code eines Schlüssels erhält man, indem man unter *Meine
 Schlüssel* auf den Schlüsseleintrag klickt. Der QR-Code wird dann am
 Bildschirm angezeigt und kann mithilfe der *QR-Code einscannen* Option
