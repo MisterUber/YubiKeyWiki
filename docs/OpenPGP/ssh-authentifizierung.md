@@ -18,7 +18,7 @@ Diese Anleitung baut auf die OpenPGP-Funktionalität des YubiKeys auf.
 Für die folgende Erklärung wird also vorausgesetzt, dass sich am
 YubiKey bereits ein OpenPGP-Schlüssel zur Authentifizierung befindet.
 Ist dies nicht der Fall, kann man eine entsprechende Anleitung auf
-unserer [OpenPGP](/docs/OpenPGP)-Seite
+unserer [OpenPGP](/YubiKeyWiki/docs/OpenPGP)-Seite
 finden.  
 Nach erfolgreicher Konfiguration sollte die Smartcard Statusausgabe so
 ähnlich aussehen (zumindest ein Authentication Key muss eingetragen
@@ -70,7 +70,7 @@ Die nächsten Schritte sind für Windows und Linux notwendig. Bei Android
 reicht es wenn das Metadaten-Feld *URL of public Key* gesetzt wird. Über
 dieses Feld importieren Apps meistens den öffentlichen Schlüssel
 automatisch. Das Setzen des Feldes wird
-[hier](/docs/OpenPGP#metadaten-auf-den-yubikey-laden)
+[hier](/YubiKeyWiki/docs/OpenPGP#metadaten-auf-den-yubikey-laden)
 erklärt.  
 Der erste Schritt der Konfiguration ist das Importieren des eigenen
 öffentlichen Schlüssels. Beim Client bräuchte man eigentlich nur den
@@ -136,7 +136,7 @@ gpg-connect-agent in den Autostart hinzuzufügen. Dazu Win + R drücken
 und den Befehl *shell:startup* ausführen. Das öffnet den Startup-Ordner.
 Als Nächstes wird ein Link(New -\> Shortcut) mit folgenden Inhalt
 erzeugt:  
-![Autostart Link](/images/openpgp/win_autostart_link.png)
+![Autostart Link](/YubiKeyWiki/images/openpgp/win_autostart_link.png)
 
 Nun wird nach jedem Login des Benutzers der gpg-connect-agent gestartet,
 damit die SSH-Authentifizierung immer funktioniert.  
@@ -177,12 +177,12 @@ Wer ein Android-Handy besitzt kann die App *Termbot* verwenden\! Diese
 App unterstützt SSH-Funktionen, sowie die Kommunikation mit dem YubiKey
 via NFC oder auch USB\! Wenn man die App startet, kommt man direkt auf
 eine Übersicht von den hinzugefügten Hosts.  
-![Hosts](/images/openpgp/termbot_hosts.jpg)  
+![Hosts](/YubiKeyWiki/images/openpgp/termbot_hosts.jpg)  
 Bevor man einen Host hinzufügt, sollte man zuerst den öffentlichen
 Schlüssel einfügen. Dies geschieht, oben rechts im vorherigen
 Screenshot unter *Pubkeys verwalten*. Folgende Seite sollte nun zu sehen
 sein:  
-![PubKeys](/images/openpgp/termbot_public_key.jpg)  
+![PubKeys](/YubiKeyWiki/images/openpgp/termbot_public_key.jpg)  
 Hier sieht man im oberen Bereich drei Optionen:
 
   - Einen neuen Schlüssel in der App erzeugen.
@@ -306,9 +306,9 @@ Hostnamen/IP-Adresse des SSH-Servers wissen und man kann sich
 erfolgreich verbinden. Das sieht mit Putty, in der Kommandozeile in
 Linux und mit Termbot folgendermaßen aus:
 
-![Windows\_Putty](/images/openpgp/putty_successful_login.png)
-![Android\_Termbot](/images/openpgp/termbot_successful_login.jpg)
-![Linux](/images/openpgp/linux_successful_login.png)
+![Windows\_Putty](/YubiKeyWiki/images/openpgp/putty_successful_login.png)
+![Android\_Termbot](/YubiKeyWiki/images/openpgp/termbot_successful_login.jpg)
+![Linux](/YubiKeyWiki/images/openpgp/linux_successful_login.png)
 
 ## Quellen
 

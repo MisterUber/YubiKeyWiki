@@ -3,7 +3,7 @@
 {% include acronyms.md %}
 
 Hier geht es um die generelle Schlüsselerstellung für den OpenPGP Dienst
-auf den YubiKeys. Allgemeine Informationen sind auf der [YubyKey Kurzbeschreibung](/docs/kurzbeschreibung#funktionen) Seite
+auf den YubiKeys. Allgemeine Informationen sind auf der [YubyKey Kurzbeschreibung](/YubiKeyWiki/docs/kurzbeschreibung#funktionen) Seite
 zu finden. Wenn Yubico davon spricht "OpenPGP" als Funktionalität zu
 bieten, ist damit eine Implementierung der "OpenPGP Smart Card
 Application" Spezifikation gemeint. Also eine Spezifikation, wie genau
@@ -25,7 +25,7 @@ Schlüssel zur Authentifizierung, zum Verschlüsseln [^1] und zum
 Signieren und ein Platz für einen Beglaubigungsschlüssel
 (Attestation-Key). Voraussetzung für die folgende Einrichtung:
 
-  - Yubico Management Tools (Anleitung: [YubiKey Verwaltung](/docs/verwaltung#installation))
+  - Yubico Management Tools (Anleitung: [YubiKey Verwaltung](/YubiKeyWiki/docs/verwaltung#installation))
   - [GnuPG-Software](https://gnupg.org/software/index.html) (Linux) bzw.
     dessen Implementierung für Windows
     [Gpg4win](https://www.gpg4win.org/) bzw. eine andere GPG
@@ -44,7 +44,7 @@ Unterstützte Algorithmen (RSA):<sup>[\[1\]](#quellen)</sup>
 
 Unterstützte Algorithmen (ECC):<sup>[\[3\]](#quellen)</sup> Zusätzliche
 Erläuterung im Kapitel
-[Sicherheitserwägung](/docs/OpenPGP#sicherheitserwägung)
+[Sicherheitserwägung](/YubiKeyWiki/docs/OpenPGP#sicherheitserwägung)
 
   - ~~secp256r1 (NIST P-256)~~ laut NSA nicht mehr sicher.
     <sup>[\[8\]](#quellen)</sup>
@@ -357,7 +357,7 @@ gpg --output ./revoke.asc --gen-revoke 13AFCE85
 
 Weitere Informationen und die Anleitung zum Schlüssel widerrufen gibt es
 im Artikel [Schlüssel
-widerrufen](/docs/OpenPGP/mailverschluesselung#schlüssel-widerrufen).
+widerrufen](/YubiKeyWiki/docs/OpenPGP/mailverschluesselung#schlüssel-widerrufen).
 
 ### Backup
 
@@ -522,10 +522,10 @@ gpg/card> quit
 
 ## Einsatzszenarien
 
-  - [Email Verschlüsselung](/docs/OpenPGP/mailverschluesselung):
+  - [Email Verschlüsselung](/YubiKeyWiki/docs/OpenPGP/mailverschluesselung):
     Beispielanwendungen zur OpenPGP Email Verschlüsselung in Thunderbird
     und Enigmail
-  - [SSH-Public-Key-Authentication](/docs/OpenPGP/ssh-authentifizierung):
+  - [SSH-Public-Key-Authentication](/YubiKeyWiki/docs/OpenPGP/ssh-authentifizierung):
     Beispielanwendungen von OpenPGP zur Public-Key-Authentication für
     eine SSH Shell
 
