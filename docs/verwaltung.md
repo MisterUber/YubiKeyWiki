@@ -230,7 +230,7 @@ Tool und der Authenticator hingegen zeigen nur einen Verbundenen YubiKey
 an.  
 Die Seriennummer ist auch auf der Rückseite des YubiKey 5 NFC
 abzulesen:  
-![Seriennummer am YubiKey 5 NFC](/images/yubikey5nfc_back.jpg){: width="100px"}
+![Seriennummer am YubiKey 5 NFC](/YubiKeyWiki/images/yubikey5nfc_back.jpg){: width="100px"}
 
 #### 3.1.1 YubiKey Manager CLI
 
@@ -268,17 +268,17 @@ Direkt nach dem Starten zeigt der YubiKey Manager Typ, Firmware und
 Seriennummer des Yubikey an. Zu dieser Ansicht kann man später auch über
 das *Home* Menü zurückkehren.
 
-![](/images/manager_serialnr.png)
+![](/YubiKeyWiki/images/manager_serialnr.png)
 
 #### 3.1.3 Yubico Personalization Tool
 
 Die Seriennummer ist im rechten Bereich des Tools zu finden.  
-![](/images/pers_tool_serialnr.png)
+![](/YubiKeyWiki/images/pers_tool_serialnr.png)
 
 #### 3.1.4 Yubico Authenticator
 
 In den Settings wird die Seriennumer ausgegeben.  
-![](/images/authenticator_serialnr.png)
+![](/YubiKeyWiki/images/authenticator_serialnr.png)
 
 -----
 
@@ -349,18 +349,18 @@ Direkt nach dem Starten zeigt der YubiKey Manager Typ, Firmware und
 Seriennummer des Yubikey an. Zu dieser Ansicht kann man später auch über
 das Home Menü zurückkehren.
 
-![](/images/manager_serialnr.png)
+![](/YubiKeyWiki/images/manager_serialnr.png)
 
 #### 3.2.3 Yubico Personalization Tool
 
 Die Firmware-Version ist im rechten Bereich des Tools zu finden.  
-![](/images/pers_tool_firmware.png)
+![](/YubiKeyWiki/images/pers_tool_firmware.png)
 
 #### 3.2.4 Yubico Authenticator
 
 Die selbe Information ist bei dem kleinen i-Symbol unter Settings zu
 finden.  
-![](/images/authenticator_firmware.png)
+![](/YubiKeyWiki/images/authenticator_firmware.png)
 
 -----
 
@@ -413,7 +413,7 @@ statt usb, nfc tippen.<sup>[\[2\]](#quellen)</sup>
 
 Der Anwendungsstatus kann unter dem Reiter "Interfaces" erfragt
 werden.  
-![](/images/manager_anwendungsstatus.png)
+![](/YubiKeyWiki/images/manager_anwendungsstatus.png)
 
 -----
 
@@ -473,7 +473,7 @@ nicht, für NFC funktioniert sie aber.
 In der GUI ist die Sache um einiges einfacher. Hierzu navigiert man
 unter **Interfaces** und klickt einfach neben der Anwendung auf dessen
 Häkchen:  
-![](/images/manager_anwendung_aktivieren.png)
+![](/YubiKeyWiki/images/manager_anwendung_aktivieren.png)
 
 -----
 
@@ -703,14 +703,14 @@ behandelt wird, gesetzt werden.
   
 Die OTP-Einstellungen findet man im Reiter "Applications" und dann OTP.
 Hier werden die beiden Slots angezeigt.  
-![](/images/manager_otp_slots.png)  
+![](/YubiKeyWiki/images/manager_otp_slots.png)  
 Beim Klick auf "Configure" wird man gefragt, welches Verfahren man
 benutzen möchte. Hier wählt man "Yubico OTP". Dann trifft man auf
 bereits bekannte Begriffe aus dem letzten Abschnitt. Um den Slot am
 einfachsten zu konfigurieren, setzt man die Boxen "Use serial" und
 "Upload". Anschließend drückt man die Knöpfe "Generate". Das sollte
 ähnlich zum nächsten Bild aussehen.
-![](/images/manager_otp_konfigurieren.png)  
+![](/YubiKeyWiki/images/manager_otp_konfigurieren.png)  
 Natürlich kann man die Felder auch wieder selbständig befüllen, wenn man
 möchte.
 
@@ -723,7 +723,7 @@ angezeigt. Man muss nur auswählen, welcher Slot konfiguriert werden
 soll. Anschließend kann die Konfiguration schon geschrieben werden. Wenn
 man die YubiCloud verwenden möchte, kann man die Konfiguration auch
 sofort hochladen.  
-![](/images/pers_tool_otp_quick.png)  
+![](/YubiKeyWiki/images/pers_tool_otp_quick.png)  
 Die zweite Option ist der "Advanced"-Mode. Hier findet man unter anderem
 die in der GUI vermisste Option der Access Codes. Es besteht auch die
 Möglichkeit die erstellte Konfiguration auf mehrere YubiKeys gleich zu
@@ -732,7 +732,7 @@ anklicken.
 Bei dieser Ansicht fehlt jedoch der "Upload to Yubico"-Button. Dies muss
 man selbstständig auf [dieser](https://upload.yubico.com/) Seite
 machen.  
-![](/images/pers_tool_otp_advanced.png)
+![](/YubiKeyWiki/images/pers_tool_otp_advanced.png)
 
 -----
 
@@ -741,12 +741,12 @@ machen.
 *Verfügbar für: CLI, Authenticator*  
   
 In OATH und dessen Funktionen HOTP und TOTP konnte man in der
-[Kurzbeschreibung](/docs/kurzbeschreibung) schon einen
+[Kurzbeschreibung](/YubiKeyWiki/docs/kurzbeschreibung) schon einen
 kleinen Einblick gewinnen. In diesem Abschnitt wird auf die Nutzung der
 beiden OTP-Protokolle eingegangen.  
 Der YubiKey bietet Platz für 32 OATH-Credentials. Abgesehen davon kann
 man in den beiden
-[OTP-Slots](/docs/kurzbeschreibung#funktionen) bereits
+[OTP-Slots](/YubiKeyWiki/docs/kurzbeschreibung#funktionen) bereits
 HOTP nutzen. Diese Slots muss man sich aber Yubico-OTP,
 Challenge-Response und dem statischen Passwort teilen. Diese zwei Slots
 können können kein TOTP aufnehmen, da dieses Verfahren die aktuelle Zeit
@@ -765,12 +765,12 @@ Das Anlegen eines Service ist im Authenticator-Tool sehr einfach.
 Deswegen empfehle ich auch diese Variante. Hierzu klickt man auf das
 große Plus-Symbol oben rechts im Fenster. Hier sollte sich ein "Add
 Account"-Fenster öffnen:  
-![](/images/authenticator_add.png)  
+![](/YubiKeyWiki/images/authenticator_add.png)  
 Die einfache Methode ist "Scan". Hier wird vom Bildschirm ein QR-Code
 eingescannt, der von der Anwendung, in der man OATH einrichten möchte,
 angezeigt wird. Von diesem kann die Authenticator App alle relevanten
 Informationen extrahieren. Hier ist ein Bespiel die App "Discord":  
-![](/images/authenticator_example.png)  
+![](/YubiKeyWiki/images/authenticator_example.png)  
 Manuell eingeben funktioniert auch in diesem Fall. Dazu benöigt man den
 angegebenen Security Key und den Account Namen.  
 Im Hauptfenster des Authenticators sollte man nun eine Spalte mit
@@ -781,7 +781,7 @@ indem man einen Doppelklick auf die Spalte "Discord" durchführt.
 Anschließend wird man aufgefordert einen Druck auf den YubiKey
 durchzuführen und man hat seinen Code. Dieser ist, wenn es sich bei der
 Einrichtung um TOTP handelt, üblicherweise 30 Sekunden gültig:  
-![](/images/authenticator_code_generated.png)  
+![](/YubiKeyWiki/images/authenticator_code_generated.png)  
 Nachdem man einmal diesen TOTP Code generiert hat und eingibt, ist der
 Service fertig konfiguriert. Das Hinzufügen ist immer so einfach und
 sollte problemlos verlaufen.  
@@ -880,7 +880,7 @@ das Passwort wieder löscht.
 *Verfügbar für: CLI, GUI*  
   
 In der
-[Kurzbeschreibung](/docs/kurzbeschreibung)
+[Kurzbeschreibung](/YubiKeyWiki/docs/kurzbeschreibung)
 konnte man einen Einblick in das Thema "FIDO" bekommen. Hier sind
 nocheinmal die wesentlichen Punkte:
 
@@ -895,7 +895,7 @@ nocheinmal die wesentlichen Punkte:
 
 Weitere Informationen, über das Hinzufügen eines Service bzw. das
 Verwalten der Credentials findet ihr auf unserer
-[FIDO2](/docs/FIDO2)
+[FIDO2](/YubiKeyWiki/docs/FIDO2)
 Seite.  
 
 -----
@@ -931,7 +931,7 @@ ist, können wir die Beschreibung von
 
 *Verfügbar für: CLI*  
   
-Für die Verwaltung von [OpenPGP](/docs/OpenPGP) stützt
+Für die Verwaltung von [OpenPGP](/YubiKeyWiki/docs/OpenPGP) stützt
 sich Yubico auf Software-Implementierungen des OpenPGP Standards
 ([RFC4880](https://tools.ietf.org/html/rfc4880)). Zur allgemeinen
 Verwaltung von OpenPGP und der Speicherung von Schlüsseln am YubiKey
@@ -939,7 +939,7 @@ sind also die [GnuPG-Software](https://gnupg.org/software/index.html)
 (Linux) bzw. dessen Implementierung für Windows
 [Gpg4win](https://www.gpg4win.org/) zu nutzen. Genauere Informationen
 zur Verwendung von OpenPGP und der sicheren Erstellung von Keys gibt es
-in unserem allgemeinen [OpenPGP](/docs/OpenPGP)
+in unserem allgemeinen [OpenPGP](/YubiKeyWiki/docs/OpenPGP)
 Artikel. Abgesehen von der GnuPG-Implementierung gibt es aber noch
 zusätzliche, YubiKey-spezifische Einstellungen die über den YubiKey
 Manager eingestellt werden können. Diese werden wir hier erläutern.
@@ -1122,7 +1122,7 @@ Zertifikat bleiben vom Reset jedoch unberührt.
 
 Die grundsätzliche Funktionalität und der Vorteil der
 Attestation-Funktionalität wird in unserem allgemeinen
-[OpenPGP](/docs/OpenPGP) Artikel erklärt. Hier werden
+[OpenPGP](/YubiKeyWiki/docs/OpenPGP) Artikel erklärt. Hier werden
 nur die zugehörigen Befehle erläutert.  
   
 Folgender Befehl dient zum Beglaubigen von Schlüsseln:

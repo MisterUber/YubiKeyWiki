@@ -18,7 +18,7 @@ Der YubiKey unterstützt,<sup>[\[2\]](#quellen)</sup>
   - die Ausgabe von einem statischen Passwort,
   - die Beantwortung von Challenge-Response-Anfragen,
   - Zweifaktor-Authentifizierung mittels FIDO U2F / FIDO2,
-  - den [OpenPGP](/docs/OpenPGP) Standard
+  - den [OpenPGP](/YubiKeyWiki/docs/OpenPGP) Standard
   - und kann auch als Smartcard funktionieren (PIV).
 
 Der YubiKey ist plug-and-play, da für einige Funktionen nur USB HID
@@ -32,7 +32,7 @@ Benutzer zu kommunizieren. Auf den Bildern unten sieht man einen YubiKey
 5 NFC mit rundem Goldkontakt in der Mitte und der LED - versteckt hinter
 dem Yubico "y".
 
-![YubiKey 5 NFC](/images/yubikey5nfc.jpg){:width="250px"} ![YubiKey 5 NFC LED](/images/yubikey5nfc_led.jpg){:width="256px"}
+![YubiKey 5 NFC](/YubiKeyWiki/images/yubikey5nfc.jpg){:width="250px"} ![YubiKey 5 NFC LED](/YubiKeyWiki/images/yubikey5nfc_led.jpg){:width="256px"}
 
 Der Button aktiviert schon bei leichten Druck und hat drei Funktionen:
 <sup>[\[2\]](#quellen)</sup>
@@ -66,9 +66,9 @@ Interfaces:<sup>[\[2\]](#quellen)</sup>
 | Funktionen                                | USB Interface | Link zum Interface Standard                                                                                                            |
 | ----------------------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | OTP                                       | Keyboard HID  | [Device Class Definition for HID 1.11](https://www.usb.org/document-library/device-class-definition-hid-111)                           |
-| [FIDO2](/docs/FIDO2)     | FIDO HID      | [FIDO U2F HID Protocol Specification](https://fidoalliance.org/specs/fido-u2f-v1.0-ps-20141009/fido-u2f-hid-protocol-ps-20141009.html) |
+| [FIDO2](/YubiKeyWiki/docs/FIDO2)     | FIDO HID      | [FIDO U2F HID Protocol Specification](https://fidoalliance.org/specs/fido-u2f-v1.0-ps-20141009/fido-u2f-hid-protocol-ps-20141009.html) |
 | PIV                                       | CCID          | [Smart Card CCID version 1.1](https://www.usb.org/document-library/smart-card-ccid-version-11)                                         |
-| [OpenPGP](/docs/OpenPGP) | CCID          | [Smart Card CCID version 1.1](https://www.usb.org/document-library/smart-card-ccid-version-11)                                         |
+| [OpenPGP](/YubiKeyWiki/docs/OpenPGP) | CCID          | [Smart Card CCID version 1.1](https://www.usb.org/document-library/smart-card-ccid-version-11)                                         |
 | OATH                                      | CCID          | [Smart Card CCID version 1.1](https://www.usb.org/document-library/smart-card-ccid-version-11)                                         |
 
 ## Slots
@@ -176,7 +176,7 @@ Funktion sollten nur dann eingesetzt werden, wenn sonst keine andere
 Authentifizierungsmethode verwendet werden kann.**
 
 **FIDO2** und **FIDO U2F:**  
-[FIDO2](/docs/FIDO2) wurde von der FIDO Alliance
+[FIDO2](/YubiKeyWiki/docs/FIDO2) wurde von der FIDO Alliance
 standardisiert. Bei FIDO2 handelt es sich um eine Sammlung von
 [Spezifikationen](https://fidoalliance.org/specs/fido-v2.0-ps-20190130/fido-client-to-authenticator-protocol-v2.0-ps-20190130.pdf)
 von 2019, die sowohl passwortlose, als auch Zwei- oder Mehrfaktor
@@ -206,7 +206,7 @@ Counter, sondern die aktuelle Zeit verwendet. Das von der aktuellen Zeit
 abgeleitete OTP ist immer nur für eine gewisse Zeitspanne (z.B. 30
 Sekunden) gültig. Damit das funktioniert muss der YubiKey natürlich die
 aktuelle Zeit kennen. Zur Verwendung und Verwaltung von OATH gibt es
-deshalb den [Yubico Authenticator](/docs/verwaltung).
+deshalb den [Yubico Authenticator](/YubiKeyWiki/docs/verwaltung).
 <sup>[\[2\]](#quellen)</sup> Weitere Informationen gibt es auf der
 Website von Yubico. <sup>[\[10\]](#quellen)</sup>
 
@@ -224,7 +224,7 @@ Weitere Informationen gibt es auf der Website von Yubico.
 <sup>[\[11\]](#quellen)</sup>
 
 **OpenPGP**  
-[OpenPGP](/docs/OpenPGP) ist ein Standard
+[OpenPGP](/YubiKeyWiki/docs/OpenPGP) ist ein Standard
 ([RFC4880](https://tools.ietf.org/html/rfc4880)), der ein
 Nachrichtenformat zur Email-Verschlüsselung und Schlüsselspeicherung auf
 Basis von Asymmetrischer Kryptografie spezifiziert. Der große Vorteil
@@ -244,14 +244,14 @@ Version der "OpenPGP Smart Card Application" gibt es auf der Seite von
 Firmwareversion 5.2.4 implementiert der YubiKey Version
 [3.4](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.0.pdf).
 <sup>[\[12\]](#quellen)</sup> Genauere Informationen gibt es in unserem
-Wiki unter [OpenPGP](/docs/OpenPGP).
+Wiki unter [OpenPGP](/YubiKeyWiki/docs/OpenPGP).
 
 ## Personalisierung
 
 Um den YubiKey für die gewünschte Verwendung einzurichten, stellt Yubico
 drei verschiedene Tools zur Verfügung.<sup>[\[13\]](#quellen)</sup>
 Genaue Informationen zur Installation und Funktionsweise dieser Tools
-gibt es in unserem [Artikel](/docs/verwaltung) zur
+gibt es in unserem [Artikel](/YubiKeyWiki/docs/verwaltung) zur
 Yubikey-Verwaltung. Nachfolgend nun ein paar Informationen für eine
 erste Übersicht:
 

@@ -182,7 +182,7 @@ Windows-Rechner\! Die Möglichkeit FIDO 2 über einen AD (Active
 Directory) oder AAD (Azure Active Directory) zu verwenden gibt es zwar,
 ist aber im privaten Kontext nicht sinnvoll. [Weitere Infos zur FIDO 2
 Verwendung im AD / AAD
-Umfeld](https://docs.microsoft.com/en-us/azure/active-directory/authentication/concept-authentication-passwordless#fido2-security-keys).
+Umfeld](https://YubiKeyWiki/docs.microsoft.com/en-us/azure/active-directory/authentication/concept-authentication-passwordless#fido2-security-keys).
 
 Für lokale Benutzer gibt es den proprietären Login-Provider von Yubico.
 <sup>[\[2\]](#quellen)</sup> Dieser funktioniert aber über die

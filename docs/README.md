@@ -17,24 +17,24 @@ Anwendungsanleitungen und Sicherheitsempfehlungen.
 
 Das Wiki hat zwei Hauptartikel die für das Verständnis wichtig sind und
 auf die später referenziert wird:
-* [YubiKey Kurzbeschreibung](/docs/kurzbeschreibung)
-* [YubiKey Verwaltungstools](/docs/verwaltung)
+* [YubiKey Kurzbeschreibung](/YubiKeyWiki/docs/kurzbeschreibung)
+* [YubiKey Verwaltungstools](/YubiKeyWiki/docs/verwaltung)
 
 Abgesehen von den zwei Hauptartikeln gibt es noch
 Funktionsbeschreibungen [^1] unter denen konkrete Anwendungsbeispiele
 [^2] zur jeweiligen Funktionalität zu finden sind:
 
-  - [OpenPGP](/docs/OpenPGP)
-      - [E-Mail Verschlüsselung](/docs/OpenPGP/mailverschluesselung) (Thunderbird, FairEmail)
-      - [SSH-Authentifizierung](/docs/OpenPGP/ssh-authentifizierung)
-  - [FIDO2](/docs/FIDO2)
-      - [Anmeldung am Computersystem](/docs/FIDO2/systemlogin) (=Systemlogin)
-      - [Weblogin bei Onlineaccounts](/docs/FIDO2/webanmeldung) (Exemplarisch GitHub, Google und Microsoft)
+  - [OpenPGP](/YubiKeyWiki/docs/OpenPGP)
+      - [E-Mail Verschlüsselung](/YubiKeyWiki/docs/OpenPGP/mailverschluesselung) (Thunderbird, FairEmail)
+      - [SSH-Authentifizierung](/YubiKeyWiki/docs/OpenPGP/ssh-authentifizierung)
+  - [FIDO2](/YubiKeyWiki/docs/FIDO2)
+      - [Anmeldung am Computersystem](/YubiKeyWiki/docs/FIDO2/systemlogin) (=Systemlogin)
+      - [Weblogin bei Onlineaccounts](/YubiKeyWiki/docs/FIDO2/webanmeldung) (Exemplarisch GitHub, Google und Microsoft)
 
 Wir empfehlen folgende Vorgehensweise für einen raschen Einstieg in die
 Welt der YubiKeys:
 
-1.  Zum allgemeinen Verständnis durchlesen der [YubiKey Kurzbeschreibung](/docs/kurzbeschreibung).
+1.  Zum allgemeinen Verständnis durchlesen der [YubiKey Kurzbeschreibung](/YubiKeyWiki/docs/kurzbeschreibung).
 2.  Zu dieser Übersicht zurückkehren und sich bei den obigen Links ein
     Anwendungsbeispiel heraussuchen das man umsetzten möchte.
 3.  YubiKey im täglichen Gebrauch einsetzen
@@ -48,7 +48,7 @@ Viel Spaß beim Arbeiten mit dem YubiKey!
 Der YubiKey bietet eine Vielzahl an möglichen Funktionen. Hier möchten
 wir die einzelnen Verfahren etwas vergleichen und eine
 Verwendungsempfehlung aussprechen. Wenn man noch keinen Überblick über
-die Funktionalitäten hat empfehlen wir unsere [YubiKey Kurzbeschreibung](/docs/kurzbeschreibung).
+die Funktionalitäten hat empfehlen wir unsere [YubiKey Kurzbeschreibung](/YubiKeyWiki/docs/kurzbeschreibung).
 
 ### 1\. Authentifizierung
 
