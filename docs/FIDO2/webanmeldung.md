@@ -49,27 +49,27 @@ verwendbar. Man kann sich auch jederzeit neue generieren lassen, dann
 werden die Alten ungültig. Diese Codes speichert man sich am besten in
 einem Passwortmanager, oder als verschlüsseltes File (z.B. mit GnuPG
 verschlüsselt) auf einem externen Datenträger ab.  
-![](/YubiKeyWiki/images/fido2/fido_git_01_recov_codes.png)  
+![]({{ page.dir }}img/fido_git_01_recov_codes.png)  
   
 2\. Jetzt bekommen wir einen QR-Code angezeigt, den wir mit der
 Authenticator-App abfotografieren können. In diesem Code befindet sich
 der geheime Schlüssel, der für die Berechnungen der Einmalpins benötigt
 wird:  
-![](/YubiKeyWiki/images/fido2/fido_git_01_scan_auth.png)  
+![]({{ page.dir }}img/fido_git_01_scan_auth.png)  
 Hier kann man mit einem beliebigen Authenticator die Registrierung
 vornehmen. Ich nehme die Yubico Authenticator-Anwendung am PC, öffne
 diese und füge einen neuen Account links oben über das "+"-Symbol hinzu.
 Dann gebe ich einen Aussteller und einen Account-Namen ein. Bevor ich
 auf *add* drücke, stelle ich sicher, dass der QR-Code von GitHub auf
 meinem Bildschirm sichtbar ist.  
-![](/YubiKeyWiki/images/fido2/fido_git_03_scan_yubiauth.png)  
+![]({{ page.dir }}img/fido_git_03_scan_yubiauth.png)  
 Die Registrierung wäre damit eigentlich schon abgeschlossen. GitHub
 verlangt aber gleich eine Authentifizierung (also Generierung und
 Eingabe eines TOTP). Dazu drücke ich beim Yubico Authenticator doppelt
 auf den Eintrag und lasse mir so (nach Berührung des eingesteckten
 Yubikeys) ein TOTP erzeugen. Diesen Code gebe ich dann bei GitHub unter
 der Anzeige des QR-Codes ein.  
-![](/YubiKeyWiki/images/fido2/fido_git_04_get_totp.png)  
+![]({{ page.dir }}img/fido_git_04_get_totp.png)  
   
 3\. Zweifaktor-Authentifizierung ist ab nun über den Authenticator
 möglich, ganz ohne sich auf Funktionalitäten des Browsers verlassen zu
@@ -83,7 +83,7 @@ Keys notwendig, um nicht aus Versehen einen falschen wieder zu
 entfernen. Hat man mehrere gleiche Modelle, empfiehlt sich bei YubiKeys
 beispielsweise die Eingabe der letzten drei Stellen der Seriennummer.
 Ich verwende hier einfach die Kennung "YK5NFC":  
-![](/YubiKeyWiki/images/fido2/fido_git_05_add_seckey.png)  
+![]({{ page.dir }}img/fido_git_05_add_seckey.png)  
 Nach einem Druck auf *Add* beginnt die Kommunikation mit dem YubiKey und
 man wird aufgefordert, durch einen Druck auf den YubiKey die
 Registrierung zu bestätigen. Was genau hier angezeigt wird ist vom
@@ -99,7 +99,7 @@ Authenticator-Schnittstelle anbietet, so übernimmt die Kommunikation der
 Browser. Man sieht im nachstehenden Bild den Dialog, den Firefox uns
 anzeigt. Im Hintergrund kommuniziert Firefox über die USB-Schnittelle
 direkt mit dem YubiKey.  
-![](/YubiKeyWiki/images/fido2/fido_git_10_firefox_kali.png)  
+![]({{ page.dir }}img/fido_git_10_firefox_kali.png)  
 Sofort nachdem diese Nachricht angezeigt wird, blinkt der YubiKey und
 durch eine Berührung des Goldkontaktes ist der YubiKey bei GitHub
 registriert.
@@ -118,7 +118,7 @@ SecurityKeys" verwendet werden. Wenn ich also einen SecurityKey bei
 GitHub hinzufügen möchte, meldet sich zuerst des Setup-Fenster vom
 Winows-Hello-PIN.
 
-![](/YubiKeyWiki/images/fido2/fido_git_06_win_pin.png)
+![]({{ page.dir }}img/fido_git_06_win_pin.png)
 
 Nachdem ich aber den YubiKey als Authenticator verwenden möchte, drücke
 ich hier auf *Cancel*.  
@@ -126,13 +126,13 @@ Als nächstes öffnet sich der Dialog mit dem *Security key setup*. Da
 drücke ich jetzt auf *OK* und registriere YubiKey durch Druck auf den
 Goldkontakt bei GitHub hinzu.
 
-![](/YubiKeyWiki/images/fido2/fido_git_13_chrome_win.png)  
+![]({{ page.dir }}img/fido_git_13_chrome_win.png)  
 
 #### Google Chrome
 
 Unterstützt das Betriebssystem FIDO2 nicht, so öffnet sich bei Google
 Chrome folgende Anzeige:  
-![](/YubiKeyWiki/images/fido2/fido_git_12_chrome.png)  
+![]({{ page.dir }}img/fido_git_12_chrome.png)  
   
 
 ### Authentifizierung
@@ -140,12 +140,12 @@ Chrome folgende Anzeige:
 Hat man den YubiKey jetzt registriert, kann man sich beim Einloggen auf
 GitHub (nach der Eingabe von Nutzername und Passwort) mithilfe des
 YubiKey als zweiten Faktor authentifizieren:  
-![](/YubiKeyWiki/images/fido2/fido_git_09_login_2fa.png)  
+![]({{ page.dir }}img/fido_git_09_login_2fa.png)  
 Durch einen Druck auf *Use security key* beginnt die Kommunikation mit
 dem YubiKey. Wie auch bei der Registrierung sind hier die Fenster ganz
 verschieden. Im schlimmsten Fall unterstützt der verwendete Browser
 WebAuthn nicht:  
-![](/YubiKeyWiki/images/fido2/fido_git_13_not_supported.jpg)  
+![]({{ page.dir }}img/fido_git_13_not_supported.jpg)  
 Dann kann man aber immer noch auf TOTP oder die Eingabe eines
 Recovery-Codes umsteigen.  
 
@@ -154,7 +154,7 @@ Recovery-Codes umsteigen.
 Auch bei Android wird auf die Implementierung des Browsers
 zurückgegriffen. Dort muss man zusätzlich noch auswählen, über welche
 Schnittstelle der YubiKey verwendet werden soll:  
-![](/YubiKeyWiki/images/fido2/fido_git_android.jpeg)  
+![]({{ page.dir }}img/fido_git_android.jpeg)  
   
 ### Anmerkungen
 
@@ -188,7 +188,7 @@ SecurityKey zu registrieren.
 Wenn man über einen Webbrowser im Google-Account eingeloggt ist kann man
 unter *Google Konto Verwalten/Sicherheit/Bestätigung in zwei Schritten*
 in den erweiterten Optionen einen SecurityKey hinzufügen:  
-![](/YubiKeyWiki/images/fido2/fido_google_02_sec_key.png)  
+![]({{ page.dir }}img/fido_google_02_sec_key.png)  
 Dann kommt eine Information, die zur Berührung des SecurityKeys
 auffordert. Nach Druck auf den YubiKey und der Vergabe eines Namens ist
 die Registrierung abgeschlossen.  
@@ -203,10 +203,10 @@ Beim Einloggen, wird nach Email und Passwort automatisch nach dem
 SecurityKey gefragt. Einfach einstecken und durch eine Berührung
 einloggen. Unmittelbar nach der Anmeldung kann man außerdem die
 Überprüfung des zweiten Faktors (YubiKey) deaktivieren:  
-![](/YubiKeyWiki/images/fido2/fido_google_03_login.png)  
+![]({{ page.dir }}img/fido_google_03_login.png)  
 Das empfiehlt sich bei einem Standrechner zu Hause. Die Herangehensweise
 beim Verlust des Schlüssels ist bei Google nämlich wie folgt geregelt:  
-![](/YubiKeyWiki/images/fido2/fido_google_04_alternatives.png)  
+![]({{ page.dir }}img/fido_google_04_alternatives.png)  
 Hat man den SecurityKey verloren, kann man sich alternativ einen
 Sicherheitscode auf ein anderes Gerät zukommen lassen, bei dem man
 angemeldet ist. Hat man aber kein Gerät, bei dem man bereits angemeldet
@@ -253,7 +253,7 @@ Microsoft-Konto mit dem Webbrowser über die Reiter
 *Sicherheit/Zusätzliche Sicherheitsoptionen/Sicherheitsschlüssel
 einrichten* zur Einrichtung navigieren. Hier kann man dann auswählen, ob
 man die USB- oder NFC-Schnittstelle nutzen möchte.  
-![](/YubiKeyWiki/images/fido2/fido_microsoft_1.png)  
+![]({{ page.dir }}img/fido_microsoft_1.png)  
 Ich stecke meinen YubiKey mittels USB am Computer an und klicke auf
 "Weiter". Bei der menügeführten Registrierung werde ich aufgefordert den
 gesetzten FIDO-PIN einzugeben, oder einen neuen FIDO-PIN zu setzen,
@@ -281,9 +281,9 @@ bei der Anmeldung mit Passwort.
 Die Authentifizierung ist ganz einfach. Beim Login braucht man die
 Email-Adresse gar nicht eingeben sondern wählt gleich den Login über den
 SecurityKey aus:  
-![](/YubiKeyWiki/images/fido2/fido_microsoft_2.png)  
+![]({{ page.dir }}img/fido_microsoft_2.png)  
 Nach Eingabe des Passworts ist man angemeldet:  
-![](/YubiKeyWiki/images/fido2/fido_microsoft_3.png)  
+![]({{ page.dir }}img/fido_microsoft_3.png)  
   
   
 ### Microsoft Zweiter Faktor für Passwort
@@ -298,12 +298,12 @@ beim Microsoft-Konto mit dem Webbrowser auf die Option
 *Sicherheit/Zusätzliche Sicherheitsoptionen/Sicherheitsschlüssel
 einrichten*. Wir wählen eine Identitätsprüfung mittels "App" aus und
 klicken auf "eine andere Authentitifikator-App einrichten":  
-![](/YubiKeyWiki/images/fido2/fido_microsoft_4.png)  
+![]({{ page.dir }}img/fido_microsoft_4.png)  
 Wir bekommen nun einen Barcode angezeigt. Wir öffnen den
 Yubico-Authenticator und fügen recht oben mit dem "+"-Symbol einen neuen
 Account hinzu. Nachdem der Barcode schon sichtbar war, hat der
 Authenticator bereits alle Informationen gefunden:  
-![](/YubiKeyWiki/images/fido2/fido_microsoft_5.png)  
+![]({{ page.dir }}img/fido_microsoft_5.png)  
 Mit einem Klick auf "Add" ist die Registrierung bereits abgeschlossen.
 Microsoft möchte aber noch eine Test-Authentifizierung und fordert uns
 auf ein OTP vom Authenticator einzugeben. Diesen "Code der App", wie er

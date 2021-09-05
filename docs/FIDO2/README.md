@@ -70,7 +70,7 @@ gespeichert und kann somit die Signatur verifizieren. Das ist der sehr
 vereinfachte Ablauf des Authentifzierungsvorgangs von U2F und ist hier
 schematisch in einem Bild dargestellt.
 <sup>[\[5\]](#quellen)[\[6\]](#quellen)</sup>  
-![U2F Schematic](/YubiKeyWiki/images/fido2/u2f_schematic.png)  
+![U2F Schematic]({{ page.dir }}img/u2f_schematic.png)  
 Bevor wir auf den Ablauf bei der Authentizierung genauer eingehen,
 werden wir die Schlüsselerzeugung bzw. den Registrierungsvorgang
 erklären.
@@ -108,7 +108,7 @@ Services registrieren lassen.<sup>[\[7\]](#quellen)</sup>
 Nun wird ein genauerer Blick auf den Ablauf des
 FIDO-Authentifzierungsvorgangs geworfen. Im nächsten Bild werden die
 Inhalte der einzelnen Übertragungen genauer aufgeschlüsselt:
-![U2F Ablauf](/YubiKeyWiki/images/fido2/u2f_ablauf.png)  
+![U2F Ablauf]({{ page.dir }}img/u2f_ablauf.png)  
 Begonnen wird auf der Serverseite. Hier sendet die Relying Party, also
 ein Server bei dem ich mich anmelden möchte, eine *Challenge*, ein
 *Handle* und eine *AppID*. Die *Challenge* ist ein zufälliger Wert der
@@ -159,7 +159,7 @@ in CTAP1 unbenannt. Beide Begriffe können synonym verwendet
 werden.<sup>[\[8\]](#quellen)</sup>  
 Um die verschiedenen Protokolle, die in FIDO2 verwendet werden,
 einordnen zu können, soll folgendes Bild helfen:
-![FIDO2 Protocol Stack](/YubiKeyWiki/images/fido2/fido2_protocol_stack.png)
+![FIDO2 Protocol Stack]({{ page.dir }}img/fido2_protocol_stack.png)
 
 Hier erkennt man die Rückwärts-Kompatibilität, nämlich dass CTAP1/U2F
 immer noch unterstützt wird. Dazu hat die FIDO-Alliance CTAP2
@@ -188,7 +188,7 @@ liegt nicht mehr in verschlüsselter Form auf dem Server. Der YubiKey
 kann 25 verschiedene Schlüssel speichern.<sup>[\[12\]](#quellen)</sup>
 Man ist jetzt also begrenzt\!  
 Das Verfahren wird im folgenden Bild zusammengefasst:  
-![FIDO2 Ablauf](/YubiKeyWiki/images/fido2/fido2_ablauf.png)  
+![FIDO2 Ablauf]({{ page.dir }}img/fido2_ablauf.png)  
 Im Falle, dass man FIDO als zweiten Faktor, neben dem statischen
 Passwort verwendet, wird wie vorher erklärt auf das CTAP1/U2F-Protokoll
 zurückgegriffen. Hierbei werden wieder non-resident Schlüssel vewendet.

@@ -230,7 +230,7 @@ Tool und der Authenticator hingegen zeigen nur einen Verbundenen YubiKey
 an.  
 Die Seriennummer ist auch auf der Rückseite des YubiKey 5 NFC
 abzulesen:  
-![Seriennummer am YubiKey 5 NFC](/YubiKeyWiki/images/yubikey5nfc_back.jpg){: width="100px"}
+![Seriennummer am YubiKey 5 NFC]({{ page.dir }}img/yubikey5nfc_back.jpg){: width="100px"}
 
 #### 3.1.1 YubiKey Manager CLI
 
@@ -268,17 +268,17 @@ Direkt nach dem Starten zeigt der YubiKey Manager Typ, Firmware und
 Seriennummer des Yubikey an. Zu dieser Ansicht kann man später auch über
 das *Home* Menü zurückkehren.
 
-![](/YubiKeyWiki/images/manager_serialnr.png)
+![]({{ page.dir }}img/manager_serialnr.png)
 
 #### 3.1.3 Yubico Personalization Tool
 
 Die Seriennummer ist im rechten Bereich des Tools zu finden.  
-![](/YubiKeyWiki/images/pers_tool_serialnr.png)
+![]({{ page.dir }}img/pers_tool_serialnr.png)
 
 #### 3.1.4 Yubico Authenticator
 
 In den Settings wird die Seriennumer ausgegeben.  
-![](/YubiKeyWiki/images/authenticator_serialnr.png)
+![]({{ page.dir }}img/authenticator_serialnr.png)
 
 -----
 
@@ -349,18 +349,18 @@ Direkt nach dem Starten zeigt der YubiKey Manager Typ, Firmware und
 Seriennummer des Yubikey an. Zu dieser Ansicht kann man später auch über
 das Home Menü zurückkehren.
 
-![](/YubiKeyWiki/images/manager_serialnr.png)
+![]({{ page.dir }}img/manager_serialnr.png)
 
 #### 3.2.3 Yubico Personalization Tool
 
 Die Firmware-Version ist im rechten Bereich des Tools zu finden.  
-![](/YubiKeyWiki/images/pers_tool_firmware.png)
+![]({{ page.dir }}img/pers_tool_firmware.png)
 
 #### 3.2.4 Yubico Authenticator
 
 Die selbe Information ist bei dem kleinen i-Symbol unter Settings zu
 finden.  
-![](/YubiKeyWiki/images/authenticator_firmware.png)
+![]({{ page.dir }}img/authenticator_firmware.png)
 
 -----
 
@@ -413,7 +413,7 @@ statt usb, nfc tippen.<sup>[\[2\]](#quellen)</sup>
 
 Der Anwendungsstatus kann unter dem Reiter "Interfaces" erfragt
 werden.  
-![](/YubiKeyWiki/images/manager_anwendungsstatus.png)
+![]({{ page.dir }}img/manager_anwendungsstatus.png)
 
 -----
 
@@ -473,7 +473,7 @@ nicht, für NFC funktioniert sie aber.
 In der GUI ist die Sache um einiges einfacher. Hierzu navigiert man
 unter **Interfaces** und klickt einfach neben der Anwendung auf dessen
 Häkchen:  
-![](/YubiKeyWiki/images/manager_anwendung_aktivieren.png)
+![]({{ page.dir }}img/manager_anwendung_aktivieren.png)
 
 -----
 
@@ -703,14 +703,14 @@ behandelt wird, gesetzt werden.
   
 Die OTP-Einstellungen findet man im Reiter "Applications" und dann OTP.
 Hier werden die beiden Slots angezeigt.  
-![](/YubiKeyWiki/images/manager_otp_slots.png)  
+![]({{ page.dir }}img/manager_otp_slots.png)  
 Beim Klick auf "Configure" wird man gefragt, welches Verfahren man
 benutzen möchte. Hier wählt man "Yubico OTP". Dann trifft man auf
 bereits bekannte Begriffe aus dem letzten Abschnitt. Um den Slot am
 einfachsten zu konfigurieren, setzt man die Boxen "Use serial" und
 "Upload". Anschließend drückt man die Knöpfe "Generate". Das sollte
 ähnlich zum nächsten Bild aussehen.
-![](/YubiKeyWiki/images/manager_otp_konfigurieren.png)  
+![]({{ page.dir }}img/manager_otp_konfigurieren.png)  
 Natürlich kann man die Felder auch wieder selbständig befüllen, wenn man
 möchte.
 
@@ -723,7 +723,7 @@ angezeigt. Man muss nur auswählen, welcher Slot konfiguriert werden
 soll. Anschließend kann die Konfiguration schon geschrieben werden. Wenn
 man die YubiCloud verwenden möchte, kann man die Konfiguration auch
 sofort hochladen.  
-![](/YubiKeyWiki/images/pers_tool_otp_quick.png)  
+![]({{ page.dir }}img/pers_tool_otp_quick.png)  
 Die zweite Option ist der "Advanced"-Mode. Hier findet man unter anderem
 die in der GUI vermisste Option der Access Codes. Es besteht auch die
 Möglichkeit die erstellte Konfiguration auf mehrere YubiKeys gleich zu
@@ -732,7 +732,7 @@ anklicken.
 Bei dieser Ansicht fehlt jedoch der "Upload to Yubico"-Button. Dies muss
 man selbstständig auf [dieser](https://upload.yubico.com/) Seite
 machen.  
-![](/YubiKeyWiki/images/pers_tool_otp_advanced.png)
+![]({{ page.dir }}img/pers_tool_otp_advanced.png)
 
 -----
 
@@ -765,12 +765,12 @@ Das Anlegen eines Service ist im Authenticator-Tool sehr einfach.
 Deswegen empfehle ich auch diese Variante. Hierzu klickt man auf das
 große Plus-Symbol oben rechts im Fenster. Hier sollte sich ein "Add
 Account"-Fenster öffnen:  
-![](/YubiKeyWiki/images/authenticator_add.png)  
+![]({{ page.dir }}img/authenticator_add.png)  
 Die einfache Methode ist "Scan". Hier wird vom Bildschirm ein QR-Code
 eingescannt, der von der Anwendung, in der man OATH einrichten möchte,
 angezeigt wird. Von diesem kann die Authenticator App alle relevanten
 Informationen extrahieren. Hier ist ein Bespiel die App "Discord":  
-![](/YubiKeyWiki/images/authenticator_example.png)  
+![]({{ page.dir }}img/authenticator_example.png)  
 Manuell eingeben funktioniert auch in diesem Fall. Dazu benöigt man den
 angegebenen Security Key und den Account Namen.  
 Im Hauptfenster des Authenticators sollte man nun eine Spalte mit
@@ -781,7 +781,7 @@ indem man einen Doppelklick auf die Spalte "Discord" durchführt.
 Anschließend wird man aufgefordert einen Druck auf den YubiKey
 durchzuführen und man hat seinen Code. Dieser ist, wenn es sich bei der
 Einrichtung um TOTP handelt, üblicherweise 30 Sekunden gültig:  
-![](/YubiKeyWiki/images/authenticator_code_generated.png)  
+![]({{ page.dir }}img/authenticator_code_generated.png)  
 Nachdem man einmal diesen TOTP Code generiert hat und eingibt, ist der
 Service fertig konfiguriert. Das Hinzufügen ist immer so einfach und
 sollte problemlos verlaufen.  
