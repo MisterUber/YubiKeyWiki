@@ -23,28 +23,10 @@ In diesem Wiki beschreiben wir die Verwendung von:
 
 [Thunderbird](https://www.thunderbird.net/en-US/) ist eine kostenlose
 Email Anwendung unter der [MPL2](https://www.mozilla.org/en-US/MPL/2.0/)
-Lizenz. Um OpenPGP verwenden zu können gibt es das
-[Enigmail](https://addons.thunderbird.net/de/thunderbird/addon/enigmail/)
-Plugin, das von [Patrick
-Brunschwig](https://addons.thunderbird.net/de/thunderbird/user/patrick-brunschwig/)
-entwickelt wird. Dieses wird aber aufgrund einer Änderung im Add-on
-Support im neuen Thunderbird 78, dessen Release für den Sommer 2020
-geplant ist, nicht mehr unterstützt\! Brunschwig wird aber mit den
-Entwicklern von Thunderbird zusammenarbeiten um die
-OpenPGP-Funktionalität direkt in Thunderbird 78 zu
-integrieren<sup>[\[2\]](#quellen)</sup>. Thunderbird 68 wird noch bis im
-Herbst 2020 gewartet<sup>[\[2\]](#quellen)</sup>, der Support für
-Enigmail läuft bis 6 Monate nach dem Release von Thunderbird 78 im
-Sommer 2020<sup>[\[3\]](#quellen)</sup>. Damit ihr gleich mit der Email
-Verschlüsselung loslegen könnt, haben wir uns dazu entschieden im
-Folgenden das Setup für Enigmail auf Thunderbird 68 zu erklären. Weiter
-unten gibt es einen [Ausblick für Thunderbird 78](#thunderbird-78) und
-dessen aktuellen Entwicklungsstand in Bezug auf die Integration von
-OpenPGP, damit ihr möglichst gut gerüstet seid für den Umstieg auf die
-Built-In Variante im Herbst 2020.  
+Lizenz. Seit Thunderbird78 wird OpenPGP ohne zusätzliche Plugins oder Software unterstützt. Leider haben sich die Entwickler bei der OpenPGP Integration (aufgrund von Lizenzproblemen) für die Verwendung der [RNP](https://www.rnpgp.com/) Bibliothek, anstatt von [GnuPG](https://gnupg.org/) entschieden. Ein direkter Einsatz von OpenPGP-Smartcards wie etwa dem YubiKey wird daher nicht nativ unterstützt. Dafür muss zusätzlich GnuPG installiert sein, um die nötigen Smartcard-Funktionalitäten für Thunderbird bereitzustellen. Das hat zur Folge, dass mit zwei Schlüsselspeichern gearbeitet wird: Einerseits dem Thunderbird-internen Schlüsselbund von RNP, andererseits dem Schlüsselbund von GnuPG. Vielleicht wird in einer späteren Thunderbird-Version die Smartcard-Unterstützung implementiert - das ist aber zumindest derzeit nicht auf der [Roadmap der Entwickler](https://wiki.mozilla.org/Thunderbird:OpenPGP:Status). <sup>[\[2\]](#quellen)</sup>
+
 Informationen und Hilfestellungen bei der generellen Verwendung von
-Thunderbird gibt es auf der [offiziellen
-Seite](https://support.mozilla.org/de/products/thunderbird/how).
+Thunderbird gibt es auf der [offiziellen Seite](https://support.mozilla.org/de/products/thunderbird/how).
 
 ### Installation von Thunderbird
 
@@ -62,62 +44,77 @@ Thunderbird lässt sich dann einfach in der Konsole starten:
 thunderbird &
 ```
 
-Für die Verwendung von Enigmail muss außerdem GnuPG installiert sein.
+Für die Verwendung des YubiKey muss außerdem GnuPG installiert sein.
 Sollte das nicht der Fall sein ist das Paket ebenfalls zu installieren:
 
 ``` bash
-sudo apt install gpg
+sudo apt install gpg scdaemon
 ```
 
 #### Windows
 
 Zur Installation auf Windows ist die aktuellste Version von der
 offiziellen Seite [herunterzuladen](https://www.thunderbird.net/de/) und
-zu installieren. Nachdem Enigmail auf GnuPG aufbaut muss zusätzlich
+zu installieren. Nachdem der Smartcard-Support auf GnuPG aufbaut, muss zusätzlich
 [Gpg4win](https://www.gpg4win.de/) installiert sein.
 
-### Das Enigmail Plugin
+### OpenPGP Einrichtung
 
 Alle weiteren Schritte werden direkt in Thunderbird, oder über das
 Kommandozeilenprogramm "gpg" ausgeführt und sind vom Betriebssystem
-unabhängig. Um später über die Menüleiste auf das Enigmail Plugin
-zugreifen zu können, empfiehlt es sich, die Menüleiste zu fixieren. Sie
+unabhängig. Sollte doch ein unterschied zwischen Windows und Linux bestehen, wird darauf speziell hingewiesen.
+
+#### Voraussetzungen
+
+Bevor mit der Einrichtung gestartet werden kann, muss ein GPG-Schlüssel am YubiKey erstellt werden. Eine entsprechende Anleitung hierfür findet sich in unserem [OpenPGP Artikel](/YubiKeyWiki/docs/OpenPGP/#schlüsselerzeugung). Hat man bereits einen privaten Schlüssel am YubiKey und möchte auf einem neuen System den zugehörigen öffentlichen Schlüssel in den GnuPG-Schlüsselbund importieren, kann man dafür beispielsweise das gesetzte "URL of public key" Feld verwenden, wie in unserem [OpenPGP Artikel](/YubiKeyWiki/docs/OpenPGP/#metadaten-auf-den-yubikey-laden) beschrieben.
+
+Wenn alles passt, sollte der gewünschte PGP-Schlüssel vom YubiKey auch im GPG-Schlüsselbund ersichtlich sein:
+```bash
+gpg -K
+/home/kali/.gnupg/pubring.kbx
+-----------------------------
+sec>  rsa4096 2020-04-16 [SC] [expires: 2025-04-15]
+      A662724593E61256E4ADB82E1E360B1A218AAFAE
+      Card serial no. = 0006 12015372
+ssb>  rsa4096 2020-04-16 [E] [expires: 2025-04-15]
+ssb>  rsa4096 2020-04-16 [A] [expires: 2025-04-15]
+```
+Die ">"-Zeichen neben sec und ssb geben an, dass sich der private Schlüssel auf der Smartcard (dem YubiKey) befinden.
+
+```note
+Die Key-ID des Schlüssels (in diesem Fall "A662724593E61256E4ADB82E1E360B1A218AAFAE") wird später für die Einrichtung in Thunderbird benötigt!
+```
+
+Für den weiteren Verlauf der Einrichtung emfpiehlt es sich die Menüleiste zu fixieren. Sie
 kommt durch Drücken der "F10"-Taste zum Vorschein und kann dort über
 *View/Toolbars/Menu Bar* fixiert werden.  
-Enigmail kann über den Add-ons Manager installiert werden. Um diesen
-aufzurufen navigiert man in der Menüleiste auf *Tools/Add-ons*. Dort
-kann im Suchfeld nach "Enigmail" gesucht werden und durch einen Klick
-auf den "*+ Add to Thunderbird*" Knopf wird Enigmail hinzugefügt. Danach
-ist ein Neustart von Thunderbird erforderlich.  
-Nach dem Neustart sollte oben in der Menüleiste der Reiter "Enigmail"
-hinzugekommen sein. Enigmail ist im Grunde nichts anderes als ein
-grafisches Frontend für GnuPG. Deshalb sieht man, wenn man über die
-Menüleiste zur Schlüsselverwaltung navigiert (*Enigmail/Key
-management*) möglicherweise bereits den eigenen Schlüssel aus dem GnuPG
-Schlüsselbund:  
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_key_management.png)  
-Es empfiehlt sich außerdem, mehr Informationen im *Enigmail Key
-Management* anzeigen zu lassen. Dann hat man einen viel besseren
-Überblick über alle Keys und deren jeweilige Stati. Die entsprechende
-Einstellung findet sich in der rechten oberen Ecke der
-Schlüsseltabelle:  
-![]({{ site.baseurl }}{{ page.dir }}img/enigmail_keymanagement_index_tab.png)  
-Um die Informationen von Smartcards (also dem YubiKey) abrufen zu
-können, muss man im Enigmail noch den "Expertenmodus" aktivieren. Das
-macht man über die Menüleiste *Enigmail/Preferences* durch einen Druck
-auf die Taste "Display Expert Settings and Menus":  
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_expert_settings.png)  
-Die Funktionalitäten des *Enigmail Key* Management sind jene von GnuPG,
-da Enigmail ein grafisches Frontend für GnuPG ist. Enigmail nutzt also
-das "gpg" Programm um Schlüssel zu verwalten und ruft für die
-Bearbeitung von Emails die Signatur- und Ver-/Entschlüsselungsfunktionen
-von GnuPG auf. Alle Schlüssel die im *Enigmail Key Management* angezeigt
-werden, liegen also im GnuPG Schlüsselbund. Dieser Schlüsselbund ist im
-jeweiligen Nutzerverzeichnis zu finden: *\~/.gnupg* bei Linux und
-*%appdata%/gnupg* in Windows. Alle Schlüsselmanagementaufgaben können
-also sowohl in der Kommandozeile mithilfe von *gpg* oder im *Enigmail
-Key Management* vorgenommen werden. Folgende Einstellungen können im
-*Enigmail Key Management* vorgenommen werden:
+
+#### Externe GnuPG-Verwendung erlauben
+
+Um die Verwendung von GnuPG in Thunderbird freizugeben, navigiert man zuerst zu den Einstellungen unter */Edit/Preferences* und geht dann zum *Config Editor..* ganz untern auf der Seite. Hier muss die Einstellung **mail.openpgp.allow_external_gnupg** durch einen Doppelklick auf "true" gesetzt werden.
+
+#### Externen Schlüssel für Mailaccount verwenden
+
+Im jeweiligen Mailaccount, wo der PGP-Schlüssel verwendet werden soll, muss dieser nun konfiguriert werden. In die Account-Einstellungen gelangt man über */Edit/Account Settings* und wählt dort beim gewünschten Mailaccount den Menüpunkt *End-To-End Encryption* aus. Jetzt kann unter **OpenPGP** ein Schlüssel durck Klick auf *+ Add Key...* hinzugefügt werden. Dazu muss die 16-Zeichen lange Key-ID eingegeben werden. (siehe dazu die [Voraussetzungen](/YubiKeyWiki/docs/OpenPGP/mailverschluesselung.html#voraussetzungen))
+
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_key2account.png){: width="500px"}
+
+
+Zusätzlich muss der Schlüssel noch separat im **OpenPGP Key Manager** hinzugefügt werden. Dieser ist erreichbar über das Menü */Tools/OpenPGP Key Manager*. Dort gibt es mehrere Import-Möglichkeiten. Am schnellsten geht es wieder über die "URL of public key". Ist sie auf der Smartcard gesetzt, lässt sie sich einfach über den Karten-Status abrufen:
+
+```bash
+gpg --card-status
+...
+URL of public key : https://keys.openpgp.org/vks/v1/by-fingerprint/A662724593E61256E4ADB82E1E360B1A218AAFAE
+...
+```
+Diese URL muss dann kopiert werden, im OpenPGP Key Manager unter */Edit/Import Key(s) from URL* eingefügt, und der Schlüssel hinzugefügt werden. Jetzt wo der Schlüssel im OpenPGP Key Manager aufscheint, ist alles fertig eingerichtet:
+
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_key_manager.png){: width="500px"}
+
+### Arbeiten mit OpenPGP in Thunderbird
+
+Die Hauptkomponente um mit den OpenPGP-Schlüsseln zu arbeiten ist der **OpenPGP Key Manager** welcher über das Menü */Tools/OpenPGP Key Manager* erreichbar ist. Folgende Einstellungen können dort vorgenommen werden:
 
   - Generieren von OpenPGP Schlüsselpaaren
   - [Importieren](#schlüssel-importieren) und Exportieren von
@@ -125,9 +122,6 @@ Key Management* vorgenommen werden. Folgende Einstellungen können im
   - Interaktion mit fremden Schlüsseln
       - [Signieren/Zertifizieren](#schlüssel-signieren)
       - [Besitzervertrauen festlegen](#besitzervertrauen-und-schlüsselauthentizität)
-  - Anpassen der Informationen am YubiKey
-
-  
   
 #### Schlüssel importieren
 Wenn man jemandem eine verschlüsselte
@@ -816,142 +810,6 @@ unbedingt deaktivieren\!** Autocrypt versucht automatisiert Schlüssel
 mit anderen Autocrypt-fähigen System auszutauschen. Das geschieht ganz
 transparent für den Nutzer. So werden Schlüssel verwendet obwohl deren
 Authentizität nicht überprüft wurde\! <sup>[\[10\]](#quellen)</sup>
-
-### Thunderbird 78
-
-(Stand Mai 2020)
-
-Wie bereits im einleitenden [Absatz über Thunderbird](#thunderbird)
-beschrieben, wird Enigmail aufgrund einer Änderung im Add-on Support im
-neuen Thunderbird 78 nicht mehr unterstützt\! Die Entwickler von
-Thunderbird arbeiten daran, die OpenPGP-Funktionalität direkt in
-Thunderbird 78 zu integrieren<sup>[\[2\]](#quellen)</sup>. Bis im Juni
-2020 läuft der [Thunderbird Virtual
-Summit](https://wiki.mozilla.org/Thunderbird/2020_Virtual_Summit), wo
-die Entwickler online Präsentationen über die aktuellen Entwicklungen
-von Thunderbird halten. Zum OpenPGP Support gab es am 21. Mai 2020 eine
-Präsentation von [Kai Engert](https://mozillians.org/de/u/kaie/), dem
-zuständigen Entwickler für die OpenPGP Implementierung. Diese
-Präsentation ist auch auf
-[YouTube](https://www.youtube.com/watch?v=zwmPwcC2Ie4) abrufbar und
-fasst den aktuellen Entwicklungsstand sehr gut zusammen. Im Folgenden
-haben wir die wichtigsten Infos für euch zusammengefasst:
-
-  - Aufgrund der eingeschränkten Zeit- und Personalressourcen wird der
-    OpenPGP Support mithilfe einer bestehenden Bibliothek realisiert.
-  - GnuPG kommt dafür nicht in Frage, aufgrund einer Lizenzproblematik
-    zwischen [GPL](https://www.gnu.org/licenses/gpl-3.0.en.html) und
-    [MPL](https://www.mozilla.org/en-US/MPL/2.0/).
-  - Deshalb wird die [RNP](https://www.rnpgp.com/) Bibliothek unter der
-    [BSD](https://github.com/rnpgp/rnp/blob/master/LICENSE.md) Lizenz
-    verwendet. Diese bietet:
-      - Signieren/Verifizieren
-      - Ver-/Entschlüsseln
-      - Arbeiten mit Schlüsseln und dem Schlüsselbund
-  -  Abgesehen davon wird Code von Enigmail wiederverwendet.
-  - Aufgrund des Zeitdrucks, dass Thunderbird 78 schon im Juli
-    veröffentlicht werden soll, ist mit vielen Bugs zu rechnen\!
-  - Die Nutzung von Smartcards wird NICHT direkt unterstützt, da RNP
-    keine Smartcard Funktionalität bietet. Es ist aber geplant, dass
-    innerhalb eines Jahres nach Release von Thunderbird 78 eine
-    Schnittstelle zur Nutzung von GnuPG geben wird. Dafür müssen Nutzer
-    selbst wieder GnuPG installieren und können dessen Smartcard
-    Funktionalität über Thunderbird nutzen.
-  - Gearbeitet wird mit einem Thunderbird-internen Schlüsselbund und
-    nicht mehr mit dem Schlüsselbund von GnuPG.
-
-Der aktuelle Umsetzungsstatus von OpenPGP in Thunderbird kann
-[online](https://wiki.mozilla.org/Thunderbird:OpenPGP:Status) eingesehen
-werden. Mit 29. Mai 2020 ist folgendes Arbeitspaket bereits auf *Done*
-gesetzt: "initial preparation for supporting GnuPG smartcards for secret
-key operations (decryption works, need to enable pref
-mail.openpgp.allow\_external\_gnupg)".
-
-#### Thunderbird 77.0 Beta
-
-(Stand Mai 2020)
-
-Derzeit gibt es schon eine
-[Betaversion](https://www.thunderbird.net/en-US/thunderbird/77.0beta/releasenotes/)
-die wir getestet haben. Da Menüs von Thunderbird wiederverwendet werden,
-sehen viele Fenster sehr vertraut aus. Viele Komfort-Funktionen fehlen
-natürlich noch, am wichtigsten für uns ist aber die fehlende
-Unterstützung von Schlüsselservern und Smartcards.  
-Der Reiter *Enigmail* in der Menüleiste ist natürlich nicht mehr zu
-finden. Die einzige Konfigurationseinstellung findet sich derzeit in den
-Einstellungen des jeweiligen Mailaccounts (*rechte Maustaste auf
-Mailaccount/Settings/End-To-End Encryption*). Es handelt sich hier um
-das ehemalige *S/Mime* Menü, zu dem neben der Namensänderung, auch die
-OpenPGP Einstellung hinzugekommen ist. Hier kann man den gewünschten
-Schlüssel für den Mailaccount auswählen und kommt auch ins
-Schlüsselmanagement:
-\\\\![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_menu.png)  
-Das Schlüsselmanagement erreicht man aber auch über die Menüleiste
-*Tools/OpenPGP Key Management...*. Dieses Fenster ist ganz vertraut, da
-es sich um das gleiche Layout handelt wie schon bei Enigmail:  
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_keymanagement.png)  
-Auch die Schlüsseleigenschaften *Rechte Maustaste/Key Properties* sehen
-ähnlich vertraut aus. Leider können aber noch keine Schlüssel signiert
-werden\! Die Authentizität muss man daher bei jedem Schlüssel einzeln
-setzen:  
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_keyproperties.png)  
-Möchte man eine Email versenden, gibt es nun den Menüpunkt *Security*,
-wo man OpenPGP zur Verschlüsselung auswählen kann:  
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_mailerstellung.png)  
-Ob die Signatur von einem authentischen Schlüssel durchgeführt wurde,
-wird nun mit einem Personensymbol angezeigt. Ist der Schlüssel nicht
-authentisch, so sieht man ein gelbes Warndreieck. Das Briefsymbol zeigt
-lediglich, dass die Signatur gültig ist. Das kleine Schloss, dass die
-Nachricht verschlüsselt ist, sieht man im folgenden Bild:  
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_mailnottrusted.png)  
-Vertraut man der Signatur hingegen, sieht man einen grünen Haken beim
-Personensymbol:  
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_mailtrusted.png)  
-Natürlich sind die Funktionalitäten noch nicht ganz ausgereift.
-Beispielsweise gibt es keine klare Fehlermeldung, wenn man dem
-Empfängerschlüssel nicht für authentisch befindet. Möchte ich eine
-Email zu diesem Empfänger senden, bekomme ich nur folgendes Feedback:  
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_keynottrusted.png)  
-  
-
-#### Fazit
-
-(Stand Mai 2020)
-
-Der OpenPGP Support funktioniert derzeit noch nicht hinreichend. Die
-folgenden zwei Funktionalitäten sind noch nicht implementiert. Sie sind
-aber essenziell um überhaupt mit OpenPGP und dem YubiKey arbeiten zu
-können:
-
-  - Signieren von Schlüsseln
-  - Smartcard Support
-
-Folgende Komfort-Funktionalität sollte außerdem unbedingt noch ergänzt
-werden:
-
-  - Verwendung von Schlüsselservern
-
-Die drei oben genannten Funktionalitäten finden sich auf der
-[ToDo-Liste](https://wiki.mozilla.org/Thunderbird:OpenPGP:Status) der
-Entwickler. Es bleibt zu hoffen, dass die OpenPGP Implementierung
-bereits vor Auslauf des Supports von Thunderbird 68 und Enigmail im
-Herbst 2020 die gewünschten Funktionalitäten bieten.  
-
-#### Weitere Infos
-
-  - [Status](https://wiki.mozilla.org/Thunderbird:OpenPGP:Status) der
-    aktuellen OpenPGP Integration im Mozilla Wiki.
-  - [OpenPGP Hauptseite](https://wiki.mozilla.org/Thunderbird:OpenPGP)
-    von Mozilla Thunderbird.
-  - [Ursprüngliche
-    Ankündigung](https://wiki.mozilla.org/Thunderbird:OpenPGP:2020) vom
-    Oktober 2019.
-  - [tb-planning](https://mail.mozilla.org/listinfo/tb-planning)
-    Mailingliste, wo die Entwickler Designentscheidungen besprechen.
-  - [Mailarchiv](https://mail.mozilla.org/pipermail/tb-planning/) der
-    tb-planning Mailingliste.
-
-  
   
 ## FairEmail & OpenKeychain
 ![]({{ site.baseurl }}{{ page.dir }}img/0_fairemail_playstore.jpg)  
@@ -1105,9 +963,9 @@ Nachricht senden kann..
 
 <sup>\[1\]</sup> OpenPGP Git, *OpenPGP History*, Letzter Zugriff
 15.05.2020, \[Online\], URL: <https://www.openpgp.org/about/history/>  
-<sup>\[2\]</sup> Ryan Sipes, *Thunderbird, Enigmail and OpenPGP*,
-(2019), Letzter Zugriff 12.05.2020, \[Online\], URL:
-<https://blog.thunderbird.net/2019/10/thunderbird-enigmail-and-openpgp/>  
+<sup>\[2\]</sup> Mozilla, *Thunderbird:OpenPGP*,
+(2021), Letzter Zugriff 05.09.2021, \[Online\], URL:
+<https://wiki.mozilla.org/Thunderbird:OpenPGP>  
 <sup>\[3\]</sup> The Enigmail Project, *2019-10-08 Future OpenPGP
 Support in Thunderbird*, Letzter Zugriff 12.05.2020, \[Online\], URL:
 <https://www.enigmail.net/index.php/en/home/news/70-2019-10-08-future-openpgp-support-in-thunderbird>  
