@@ -95,18 +95,18 @@ grafisches Frontend für GnuPG. Deshalb sieht man, wenn man über die
 Menüleiste zur Schlüsselverwaltung navigiert (*Enigmail/Key
 management*) möglicherweise bereits den eigenen Schlüssel aus dem GnuPG
 Schlüsselbund:  
-![]({{ page.dir }}img/thunderbird_enigmail_key_management.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_key_management.png)  
 Es empfiehlt sich außerdem, mehr Informationen im *Enigmail Key
 Management* anzeigen zu lassen. Dann hat man einen viel besseren
 Überblick über alle Keys und deren jeweilige Stati. Die entsprechende
 Einstellung findet sich in der rechten oberen Ecke der
 Schlüsseltabelle:  
-![]({{ page.dir }}img/enigmail_keymanagement_index_tab.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/enigmail_keymanagement_index_tab.png)  
 Um die Informationen von Smartcards (also dem YubiKey) abrufen zu
 können, muss man im Enigmail noch den "Expertenmodus" aktivieren. Das
 macht man über die Menüleiste *Enigmail/Preferences* durch einen Druck
 auf die Taste "Display Expert Settings and Menus":  
-![]({{ page.dir }}img/thunderbird_enigmail_expert_settings.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_expert_settings.png)  
 Die Funktionalitäten des *Enigmail Key* Management sind jene von GnuPG,
 da Enigmail ein grafisches Frontend für GnuPG ist. Enigmail nutzt also
 das "gpg" Programm um Schlüssel zu verwalten und ruft für die
@@ -160,15 +160,15 @@ Menüleiste: *Enigmail/Key management*).
     navigiere ich dafür auf *Keyserver/Search for Keys*. Ich importiere
     hier beispielhaft den öffentlichen Schlüssel meines fiktiven
     Testkollegen Troye Finnegan:  
-    ![]({{ page.dir }}img/thunderbird_enigmail_import_troye.png)  
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_import_troye.png)  
     Nachdem ich nach ihm gesucht habe, sehe ich seinen Schlüssel und
     kann diesen importieren.  
-    ![]({{ page.dir }}img/thunderbird_enigmail_import_troye_fingerprint.png)  
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_import_troye_fingerprint.png)  
     Ich sehe nun den Schlüssel von Troye in meinem Schlüsselbund. Ich
     kann im *Enigmail Key Management* auf einen Blick sehen ob es sich
     bei Schlüsseln um private (fette Schrift) oder öffentliche Schlüssel
     (normale Schrift) handelt:  
-    ![]({{ page.dir }}img/thunderbird_enigmail_import_troye_done.png)  
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_import_troye_done.png)  
 
 ```tip
 **Sicherheitserwägung**: Beim Hinzufügen von öffentlichen Schlüsseln **soll** sichergestellt werden, dass es sich wirklich um den
@@ -193,7 +193,7 @@ Enigmail auf einem neuen System installiere ist mein Schlüssel noch
 nicht am System. In diesem Absatz gehe ich davon aus, dass der eigene
 Schlüssel noch nicht am System bekannt ist. Ich sehe also nur den zuvor
 hinzugefügten Schlüssel von Troye:  
-![]({{ page.dir }}img/thunderbird_enigmail_privavail_troye.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_privavail_troye.png)  
 Da es sich bei den privaten Schlüsseln am YubiKey ausschließlich um
 Subschlüssel handelt, benötigen wir im lokalen Schlüsselbund zumindest
 den öffentlichen Schlüssel. Dieser liefert uns die notwendigen
@@ -261,7 +261,7 @@ gleich im Anschluss an diesen Abschnitt.
   - Besitzervertrauen setzen im *Enigmail Key Management*: Mit einem
     Rechtsklick auf den gewünschten Schlüssel öffnet man das Menü *Key
     Properties* und setzt das Vertrauen auf "Ultimate"  
-    ![]({{ page.dir }}img/thunderbird_enigmail_certify_keys.png)
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_certify_keys.png)
   - Besitzervertrauen setzten in der Kommandozeile:
   ```
 kali@kali:~$ gpg --edit-key kristoffer.dorfmayr@hagenbergerkreis.at
@@ -319,7 +319,7 @@ Troye und wähle sowohl Verschlüsseln als auch Signieren aus. Zusätzlich
 kann ich noch überprüfen, ob Enigmail auch den Betreff der Email
 schützen wird. Dafür Schaue ich ins Enigmail Menü und versichere mich,
 dass der Haken bei "Protect Subject" gesetzt ist.  
-![]({{ page.dir }}img/thunderbird_enigmail_sendmail.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_sendmail.png)  
   
 Wenn ich auf "Send" klicke werden im Hintergrund automatisch die
 passenden Schlüssel herausgesucht:
@@ -334,7 +334,7 @@ passenden Schlüssel herausgesucht:
     Signaturschlüssel auf einer SmartCard gibt. Bevor der YubiKey die
     Email signiert, werde ich noch nach dem Pin gefragt, und muss den
     Signaturvorgang mit einer Berührung am YubiKey bestätigen:  
-    ![]({{ page.dir }}img/thunderbird_enigmail_sendmail_pin.png)  
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_sendmail_pin.png)  
     Falls ihr die Touch Policy und das Pin Setup noch nicht konfiguriert
     habt findet ihr Informationen dazu [hier](/YubiKeyWiki/docs/verwaltung#310-openpgp-verwalten).  
       
@@ -346,7 +346,7 @@ Sofort wenn ich auf die erhaltene Nachricht klicke, versucht Enigmail
 diese zu entschlüsseln. Natürlich muss ich auch hier wieder meinen Pin
 eingeben und die Entschlüsselung mit meinem privaten Schlüssel durch
 eine Berührung des YubiKey autorisieren.  
-![]({{ page.dir }}img/thunderbird_enigmail_getmail.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_getmail.png)  
 Das Schlosssymbol zeigt uns, dass es sich um eine verschlüsselte
 Nachricht handelt. Der kleine Brief sagt uns, dass es sich um eine
 signierte Nachricht handelt. Zusätzlich bekommen wir die Nachricht "Good
@@ -412,10 +412,10 @@ Nun aber zurück zum Signieren von Schlüsseln in Enigmail. Derzeit habe
 ich den Schlüssel von Troye noch nicht signiert, weshalb die
 Authentizität des Schlüssel auch noch nicht angegeben ist ("-" Eintrag
 im Feld "Key Validity"):  
-![]({{ page.dir }}img/enigmail_sign1.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/enigmail_sign1.png)  
 Mit einem Rechtsklick auf den Schlüssel "Sign Key" öffnet sich das
 Fenster zum Signieren des Schlüssels:  
-![]({{ page.dir }}img/enigmail_sign2.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/enigmail_sign2.png)  
 Wenn man mehrere Schlüssel im privaten Schlüsselbund hat, welche die
 "Certify" Eigenschaft besitzen, kann man diese über das "Key for
 signing" Drop-Down Menü auswählen. Ich habe nur den einen Hauptschlüssel
@@ -436,7 +436,7 @@ Nach Bestätigen des Dialoges und Eingabe der Passphrase wird meine
 Signatur dem öffentlichen Schlüssel angehängt. Ersichtlich ist diese
 Signatur in den Schlüsseleigenschaften des signierten Schlüssels
 (*rechtsklick/Key Properties/Certifications*):  
-![]({{ page.dir }}img/enigmail_sign3.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/enigmail_sign3.png)  
 Hier können ohne weiteres auch mehrere Signaturen aufscheinen.
 Einerseits die Signaturen des Hauptschlüssels über sich selbst und seine
 Subschlüssel, andererseits Signaturen von den Schlüsseln anderer Nutzer.
@@ -475,7 +475,7 @@ in Zeile 2) und die Identität (Paket beginnt in Zeile 8) erstellt wurde:
 
 Durch das Signieren des Schlüssels ist die Autzentizität des Schlüssels
 (Gültigkeit) auf "trusted" gewechselt:  
-![]({{ page.dir }}img/enigmail_sign4.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/enigmail_sign4.png)  
   
 Weitere Informationen über das Vertrauen gegenüber von Schlüsseln und
 Schlüsselbesitzern im nächsten Abschnitt.  
@@ -517,14 +517,14 @@ jeweiligen *Key Properties* Fenster fest. Zu dem kommen wir über das
 *Enigmail Key Management* durch *Rechtsklick/Key Properties* auf den
 Schlüssel, dessen Besitzervertrauen wir festlegen möchten. Dort können
 wir Fenster zum Ändern des Benutzervertrauens aufrufen:  
-![]({{ page.dir }}img/enigmail_trust1.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/enigmail_trust1.png)  
 Hier finden wir nun die Vertrauensstufen wieder, die schon in obigem
 Algorithmus zur Festlegung des Schlüsselvertrauens vorgekommen sind. Ich
 setze das Besitzervertrauen für Troye auf "Complete":  
-![]({{ page.dir }}img/enigmail_trust2.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/enigmail_trust2.png)  
 Das gesetzte Benutzervertrauen sehe ich nun auch im *Enigmail Key
 Management*:  
-![]({{ page.dir }}img/enigmail_trust3.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/enigmail_trust3.png)  
 Durch dieses gegenseitige Zertifizieren und Vertrauen kann ein komplexes
 "Vertrauensgebilde" entstehen, das sich "Web of Trust" nennt. Ein
 konkretes Beispiel für eine solche Vertrauenskette findet sich im [GNU Privacy Handbook](https://gnupg.org/gph/de/manual/x420.html#AEN482). Hier zur Veranschaulichung nur ein kleines Beispiel:
@@ -536,18 +536,18 @@ und hat ihn mir übermittelt. Wenn ich nun diesen Schlüssel von Tristan
 importiere, wird er als authentisch angezeigt (die "Key Validity" ist
 "trusted"), obwohl ich ihn nicht signiert habe und auch das
 Besitzervertrauen von Tristan nicht gesetzt ist:  
-![]({{ page.dir }}img/gpg_mail_trust_01.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/gpg_mail_trust_01.png)  
 Beim Schlüssel von Troye handelt es sich nach dem [obigen Algorithmus zur Festlegung der Authentizität](#besitzervertrauen-und-schlüsselauthentizität) um
 einen "Schlüssel vollen Vertrauens". Wir haben nämlich das
 Besitzervertrauen für Schlüsselsignaturen von Troye auf "trusted"
 gesetzt. In weiterer Folge werden alle Schlüssel als Authentisch
 eingestuft, die von ihm signiert wurden. Die Signatur von Troye in
 Tristans Schlüssel können wir in den Schlüsseldetails sehen:  
-![]({{ page.dir }}img/gpg_mail_trust_02.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/gpg_mail_trust_02.png)  
 Bekommen wir nun eine signierte Email von Tristan, wird diese Email als
 authentisch eingestuft. Das erkennen wir am grünen Banner und dem Kuvert mit dem roten Siegel:
 
-![]({{ page.dir }}img/gpg_mail_trust_03.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/gpg_mail_trust_03.png)  
   
 
 #### Verteilen von Schlüsseln
@@ -680,7 +680,7 @@ Wie man Schlüssel erstellt und auf den YubiKey transferiert erklären wir
 in unserem [OpenPGP](/YubiKeyWiki/docs/OpenPGP) Artikel. Das
 Ergebnis kann ich gleich in den *Key Properties* von Enigmail unter dem
 Tab *Structure* einsehen:  
-![]({{ page.dir }}img/enigmail_revoc1_new.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/enigmail_revoc1_new.png)  
 Sobald ich einen Schlüssel widerrufen habe, muss ich diese Änderung
 sofort an alle Kommunikationspartner weiterleiten\! Dafür kann ich
 entweder den öffentlichen Schlüssel exportieren und selbst verteilen,
@@ -753,7 +753,7 @@ des YubiKey und das Ändern der PINs ist Enigmail aber ausreichend. Über
 die Menüleiste *Enigmail/Manage SmartCard ...* öffnet sich das *OpenPGP
 SmartCard Details* Fenster. Hier werden OpenPGP bezogene Informationen
 über den YubiKey angezeigt:  
-![]({{ page.dir }}img/enigmail_smartcard1.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/enigmail_smartcard1.png)  
 Über *SmartCard/Edit Card Data* lassen sich in eben diesem Fenster Name,
 Sprache, Geschlecht, Link zum öffentlichen Schlüssel, Login-Daten für
 den Keyserver, und das "Force signature PIN"-Flag ändern.  
@@ -885,33 +885,33 @@ das ehemalige *S/Mime* Menü, zu dem neben der Namensänderung, auch die
 OpenPGP Einstellung hinzugekommen ist. Hier kann man den gewünschten
 Schlüssel für den Mailaccount auswählen und kommt auch ins
 Schlüsselmanagement:
-\\\\![]({{ page.dir }}img/thunderbird_beta_e2e_menu.png)  
+\\\\![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_menu.png)  
 Das Schlüsselmanagement erreicht man aber auch über die Menüleiste
 *Tools/OpenPGP Key Management...*. Dieses Fenster ist ganz vertraut, da
 es sich um das gleiche Layout handelt wie schon bei Enigmail:  
-![]({{ page.dir }}img/thunderbird_beta_e2e_keymanagement.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_keymanagement.png)  
 Auch die Schlüsseleigenschaften *Rechte Maustaste/Key Properties* sehen
 ähnlich vertraut aus. Leider können aber noch keine Schlüssel signiert
 werden\! Die Authentizität muss man daher bei jedem Schlüssel einzeln
 setzen:  
-![]({{ page.dir }}img/thunderbird_beta_e2e_keyproperties.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_keyproperties.png)  
 Möchte man eine Email versenden, gibt es nun den Menüpunkt *Security*,
 wo man OpenPGP zur Verschlüsselung auswählen kann:  
-![]({{ page.dir }}img/thunderbird_beta_e2e_mailerstellung.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_mailerstellung.png)  
 Ob die Signatur von einem authentischen Schlüssel durchgeführt wurde,
 wird nun mit einem Personensymbol angezeigt. Ist der Schlüssel nicht
 authentisch, so sieht man ein gelbes Warndreieck. Das Briefsymbol zeigt
 lediglich, dass die Signatur gültig ist. Das kleine Schloss, dass die
 Nachricht verschlüsselt ist, sieht man im folgenden Bild:  
-![]({{ page.dir }}img/thunderbird_beta_e2e_mailnottrusted.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_mailnottrusted.png)  
 Vertraut man der Signatur hingegen, sieht man einen grünen Haken beim
 Personensymbol:  
-![]({{ page.dir }}img/thunderbird_beta_e2e_mailtrusted.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_mailtrusted.png)  
 Natürlich sind die Funktionalitäten noch nicht ganz ausgereift.
 Beispielsweise gibt es keine klare Fehlermeldung, wenn man dem
 Empfängerschlüssel nicht für authentisch befindet. Möchte ich eine
 Email zu diesem Empfänger senden, bekomme ich nur folgendes Feedback:  
-![]({{ page.dir }}img/thunderbird_beta_e2e_keynottrusted.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_beta_e2e_keynottrusted.png)  
   
 
 #### Fazit
@@ -954,7 +954,7 @@ Herbst 2020 die gewünschten Funktionalitäten bieten.
   
   
 ## FairEmail & OpenKeychain
-![]({{ page.dir }}img/0_fairemail_playstore.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/0_fairemail_playstore.jpg)  
 FairEmail ist ein open-source Email Client für Android-Geräte. Dieser
 unterstützt unter anderem die Ver- und Entschlüsselung von Emails
 mittels OpenPGP und S/MIME. Nach der Einrichtungsanleitung der App wird
@@ -966,11 +966,11 @@ Der FairEmail-Client kann gratis über denn Google Playstore bezogen
 werden. Die Einrichtung ist sehr simpel und wird hier in wenigen
 Schritten gezeigt.  
 Beim ersten Start wird man mit einer Einrichtungsseite begrüßt.  
-![]({{ page.dir }}img/1_fairemail_schnelleinrichtung.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/1_fairemail_schnelleinrichtung.jpg)  
 Hier empfielt es sich die Schnelleinrichtung zu verwenden. Im
 Optimalfall hat man dadurch in nur einem Schritt ein Email-Konto
 hinzugefügt:  
-![]({{ page.dir }}img/2_fairemail_einrichtung.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/2_fairemail_einrichtung.jpg)  
 Hier müssen ein Name, die Email Adresse und das zugehörige Passwort
 eingegeben werden. Die Servereinstellungen versucht die App eigenständig
 zu abzuleiten. Sie werden dann zur Kontrolle im unteren Bereich
@@ -987,38 +987,38 @@ nach unten scrollt und bei *Zu Nachrichten wechseln* auf *Los* klickt.
 Nun sollte man den Posteingang sehen.  
 Doch bevor man mit dem Verschlüsseln loslegen kann, benötigt man noch
 eine weitere App: *OpenKeychain*.  
-![]({{ page.dir }}img/4_openkeychain_playstore.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/4_openkeychain_playstore.jpg)  
 Diese übernimmt die Kommunikation mit dem YubiKey und ermöglicht das
 Verschlüsseln von Dateien und der Email-Kommunikation. Nach der
 Installation von OpenKeychain trägt FairEmail automatisch im Abschnitt
 *OpenPGP-Anbieter* den Schlüsselbund von OpenKeychain ein. Die Option
 *Autocrypt verwenden* sollte auf alle Fälle deaktiviert werden\! Infos
 dazu siehe auch in den Thunderbird [Konfigurationsempfehlungen](#konfigurationsempfehlungen)  
-![]({{ page.dir }}img/3_fairemail_pgp_einstellungen.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/3_fairemail_pgp_einstellungen.jpg)  
 Die App kann man natürlich wieder über dem Playstore beziehen. Beim
 Start der App wird gleich ein Setup Bildschirm angezeigt. Natürlich
 müssen sich erst OpenPGP Schlüssel auf dem Gerät befinden, bevor man
 mit ihnen arbeiten kann. Man kann Schlüssel am Smartphone erzeugen, aus
 einer Datei importieren oder die Schlüssel auf einem Security Token
 nutzen. Letzteres wird für den YubiKey benötigt.  
-![]({{ page.dir }}img/5_openkeychain_start.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/5_openkeychain_start.jpg)  
 Im nächsten Schritt wird man aufgefordert, den YubiKey an das Smartphone
 zu halten, da die App die NFC-Funktion verwendet.  
-![]({{ page.dir }}img/6_openkeychain_karte_anhalten.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/6_openkeychain_karte_anhalten.jpg)  
 Wenn der YubiKey erkannt wird, wird anhand der [hinterlegten
 URL](/yubikey4hk/funktionen/openpgp#metadaten_auf_den_yubikey_laden) der
 zugehörige öffentlichen Schlüssel importiert. Dies muss noch mit dem
 grünen Button *Import* bestätigt werden.  
-![]({{ page.dir }}img/7_openkeychain_key_hinzufuegen.jpg){: width="200px"}  
+![]({{ site.baseurl }}{{ page.dir }}img/7_openkeychain_key_hinzufuegen.jpg){: width="200px"}  
 Der Schlüssel wird nun importiert:  
-![]({{ page.dir }}img/8_openkeychain_key_hinzugefuegt.jpg){: width="200px"}  
+![]({{ site.baseurl }}{{ page.dir }}img/8_openkeychain_key_hinzugefuegt.jpg){: width="200px"}  
 Wenn man nun auf *Schlüssel ansehen* klickt, kann man den
 Schlüsselstatus überprüfen. Hier sollte stehen, das der Schlüssel
 *stripped* ist und zum Signieren und Verschlüsseln geeignet ist.
 *Stripped* heißt, dass der Hauptschlüssel fehlt. Dieser befindet sich
 nicht am YubiKey, sondern nur die drei Unterschlüssel. Das hat den
 Nachteil, dass man fremde öffentliche Schlüssel nicht signieren kann.  
-![]({{ page.dir }}img/9_openkeychain_keystatus.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/9_openkeychain_keystatus.jpg)  
 Die generelle Einrichtung der App ist nun abgeschlossen. Nun müssen noch
 die öffentlichen Schlüssel der Kommunikationspartner hinzugefügt werden.
 
@@ -1030,7 +1030,7 @@ Es gibt drei Möglichkeiten einen fremden Schlüssel hinzuzufügen:
   - Schlüssel suchen
   - Aus Datei importieren
 
-![]({{ page.dir }}img/10_openkeychain_fremden_schluessel_import.jpg){: width="200px"}   
+![]({{ site.baseurl }}{{ page.dir }}img/10_openkeychain_fremden_schluessel_import.jpg){: width="200px"}   
 Den QR-Code eines Schlüssels erhält man, indem man unter *Meine
 Schlüssel* auf den Schlüsseleintrag klickt. Der QR-Code wird dann am
 Bildschirm angezeigt und kann mithilfe der *QR-Code einscannen* Option
@@ -1042,12 +1042,12 @@ Auch hier gilt, wie schon bei Thunderbird: unbedingt den Fingerprint des
 Schlüssels überprüfen\! Der Fingerprint lässt sich nach dem Hinzufügen
 des Schlüssels anzeigen. Dazu navigiert man auf *Schlüssel
 auswählen/.../Erweitert/Teilen*.  
-![]({{ page.dir }}img/11_openkeychain_key_suche.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/11_openkeychain_key_suche.jpg)  
 Bevor man jedoch Schlüssel finden kann, muss ein Schlüsselserver
 eingestellt werden. Dafür navigiert man in den Einstellungen, die oben
 rechts mit den drei vertikalen Punkten aufrufbar sind. Hier findet man
 folgendes Menü vor:  
-![]({{ page.dir }}img/12_openkeychain_keyserver_menu.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/12_openkeychain_keyserver_menu.jpg)  
 Der Keyserver wird nun unter *OpenPGP Schlüsselserver verwalten*
 eingestellt. Hier findet man ein paar voreingestellte Server. Wir
 empfehlen, wie bereits bei Thunderbird die Nutzung von Schlüsselservern,
@@ -1060,7 +1060,7 @@ wieder gibt es deswegen auch Bug-Reports auf github wie auch
 besten man importiert die bereits signierten Schlüssel aus einem File,
 das man auf das Telefon kopiert. Der oberste Schlüsselserver ist grün
 hinterlegt. Es wird immer dieser Server befragt.  
-![]({{ page.dir }}img/13_openkeychain_keyserver_settings.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/13_openkeychain_keyserver_settings.jpg)  
 Nachdem man den richtigen Server ausgewählt und eventuell auch
 hinzugefügt hat, kann man nach einen fremden Schlüssel suchen.  
   
@@ -1076,7 +1076,7 @@ kann man eine verschlüsselte Email an ihn senden.
 Wenn man eine Email in FairEmail senden möchte, muss man nur auf das
 Stift-Symbol im unteren Bereich des Bildschirms drücken. Nun sieht man
 diesen Bildschirm:  
-![]({{ page.dir }}img/14_fairemail_email_senden.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/14_fairemail_email_senden.jpg)  
 Wenn man eine durch OpenPGP geschützte Email versenden möchte, muss man
 im oberen Bereich das Schloss-Symbol antippt, bis es grün wird. Dies ist
 im vorherigen Screenshot rot umrandet. Das kann auch beim Sende-Symbol
@@ -1086,7 +1086,7 @@ signiert wird, sondern lediglich, dass OpenPGP zum Einsatz kommt.
 Nun muss man noch einen Empfänger eintragen und einen netten Text
 schreiben und man kann die Email versenden. Vor dem Senden, werden zur
 Kontrolle noch einmal die Einstellungen ausgegeben::  
-![]({{ page.dir }}img/15_fairemail_email_settings.jpg)  
+![]({{ site.baseurl }}{{ page.dir }}img/15_fairemail_email_settings.jpg)  
 Hier sieht man, dass unter *Verschlüsselung* *PGP signieren und
 verschlüsseln* ausgewählt ist. Wenn man möchte kann man hier auch
 auswählen, dass die Email nur signiert werden soll. Wenn die

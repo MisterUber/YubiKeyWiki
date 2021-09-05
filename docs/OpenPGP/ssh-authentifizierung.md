@@ -136,7 +136,7 @@ gpg-connect-agent in den Autostart hinzuzufügen. Dazu Win + R drücken
 und den Befehl *shell:startup* ausführen. Das öffnet den Startup-Ordner.
 Als Nächstes wird ein Link(New -\> Shortcut) mit folgenden Inhalt
 erzeugt:  
-![Autostart Link]({{ page.dir }}img/win_autostart_link.png)
+![Autostart Link]({{ site.baseurl }}{{ page.dir }}img/win_autostart_link.png)
 
 Nun wird nach jedem Login des Benutzers der gpg-connect-agent gestartet,
 damit die SSH-Authentifizierung immer funktioniert.  
@@ -177,12 +177,12 @@ Wer ein Android-Handy besitzt kann die App *Termbot* verwenden\! Diese
 App unterstützt SSH-Funktionen, sowie die Kommunikation mit dem YubiKey
 via NFC oder auch USB\! Wenn man die App startet, kommt man direkt auf
 eine Übersicht von den hinzugefügten Hosts.  
-![Hosts]({{ page.dir }}img/termbot_hosts.jpg)  
+![Hosts]({{ site.baseurl }}{{ page.dir }}img/termbot_hosts.jpg)  
 Bevor man einen Host hinzufügt, sollte man zuerst den öffentlichen
 Schlüssel einfügen. Dies geschieht, oben rechts im vorherigen
 Screenshot unter *Pubkeys verwalten*. Folgende Seite sollte nun zu sehen
 sein:  
-![PubKeys]({{ page.dir }}img/termbot_public_key.jpg)  
+![PubKeys]({{ site.baseurl }}{{ page.dir }}img/termbot_public_key.jpg)  
 Hier sieht man im oberen Bereich drei Optionen:
 
   - Einen neuen Schlüssel in der App erzeugen.
@@ -306,9 +306,9 @@ Hostnamen/IP-Adresse des SSH-Servers wissen und man kann sich
 erfolgreich verbinden. Das sieht mit Putty, in der Kommandozeile in
 Linux und mit Termbot folgendermaßen aus:
 
-![Windows\_Putty]({{ page.dir }}img/putty_successful_login.png)
-![Android\_Termbot]({{ page.dir }}img/termbot_successful_login.jpg)
-![Linux]({{ page.dir }}img/linux_successful_login.png)
+![Windows\_Putty]({{ site.baseurl }}{{ page.dir }}img/putty_successful_login.png)
+![Android\_Termbot]({{ site.baseurl }}{{ page.dir }}img/termbot_successful_login.jpg)
+![Linux]({{ site.baseurl }}{{ page.dir }}img/linux_successful_login.png)
 
 ## Quellen
 
