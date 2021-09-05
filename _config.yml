@@ -4,6 +4,7 @@ description: Umfassendes deutschsprachiges Wiki zum YubiKey
 
 remote_theme: rundocs/jekyll-rtd-theme
 markdown: kramdown
+baseurl: /YubiKeyWiki
 
 readme_index:
   with_frontmatter: true

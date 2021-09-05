@@ -32,7 +32,7 @@ Benutzer zu kommunizieren. Auf den Bildern unten sieht man einen YubiKey
 5 NFC mit rundem Goldkontakt in der Mitte und der LED - versteckt hinter
 dem Yubico "y".
 
-![YubiKey 5 NFC]({{ page.dir }}img/yubikey5nfc.jpg){:width="250px"} ![YubiKey 5 NFC LED]({{ page.dir }}img/yubikey5nfc_led.jpg){:width="256px"}
+![YubiKey 5 NFC]({{ site.baseurl }}{{ page.dir }}img/yubikey5nfc.jpg){:width="250px"} ![YubiKey 5 NFC LED]({{ site.baseurl }}{{ page.dir }}img/yubikey5nfc_led.jpg){:width="256px"}
 
 Der Button aktiviert schon bei leichten Druck und hat drei Funktionen:
 <sup>[\[2\]](#quellen)</sup>
