@@ -58,6 +58,12 @@ offiziellen Seite [herunterzuladen](https://www.thunderbird.net/de/) und
 zu installieren. Nachdem der Smartcard-Support auf GnuPG aufbaut, muss zusätzlich
 [Gpg4win](https://www.gpg4win.de/) installiert sein.
 
+Damit Thunderbird die benötigte libgpgme.dll findet, muss deren Pfad zum Speicherort in der Path-Umgebungsvariable gesetzt werden. Ganz einfach geht das über folgenden Befehl in einer Kommandozeile (cmd) mit Administratorrechten:
+
+``` bash
+setx /m PATH "C:\PfadZurGPGInstallation\Gpg4win\bin_64;%PATH%"
+```
+
 ### OpenPGP Einrichtung
 
 Alle weiteren Schritte werden direkt in Thunderbird, oder über das
@@ -91,26 +97,7 @@ kommt durch Drücken der "F10"-Taste zum Vorschein und kann dort über
 
 #### Externe GnuPG-Verwendung erlauben
 
-Um die Verwendung von GnuPG in Thunderbird freizugeben, navigiert man zuerst zu den Einstellungen unter */Edit/Preferences* und geht dann zum *Config Editor..* ganz untern auf der Seite. Hier muss die Einstellung **mail.openpgp.allow_external_gnupg** durch einen Doppelklick auf "true" gesetzt werden.
-
-#### Externen Schlüssel für Mailaccount verwenden
-
-Im jeweiligen Mailaccount, wo der PGP-Schlüssel verwendet werden soll, muss dieser nun konfiguriert werden. In die Account-Einstellungen gelangt man über */Edit/Account Settings* und wählt dort beim gewünschten Mailaccount den Menüpunkt *End-To-End Encryption* aus. Jetzt kann unter **OpenPGP** ein Schlüssel durck Klick auf *+ Add Key...* hinzugefügt werden. Dazu muss die 16-Zeichen lange Key-ID eingegeben werden. (siehe dazu die [Voraussetzungen](/YubiKeyWiki/docs/OpenPGP/mailverschluesselung.html#voraussetzungen))
-
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_key2account.png){: width="500px"}
-
-
-Zusätzlich muss der Schlüssel noch separat im **OpenPGP Key Manager** hinzugefügt werden. Dieser ist erreichbar über das Menü */Tools/OpenPGP Key Manager*. Dort gibt es mehrere Import-Möglichkeiten. Am schnellsten geht es wieder über die "URL of public key". Ist sie auf der Smartcard gesetzt, lässt sie sich einfach über den Karten-Status abrufen:
-
-```bash
-gpg --card-status
-...
-URL of public key : https://keys.openpgp.org/vks/v1/by-fingerprint/A662724593E61256E4ADB82E1E360B1A218AAFAE
-...
-```
-Diese URL muss dann kopiert werden, im OpenPGP Key Manager unter */Edit/Import Key(s) from URL* eingefügt, und der Schlüssel hinzugefügt werden. Jetzt wo der Schlüssel im OpenPGP Key Manager aufscheint, ist alles fertig eingerichtet:
-
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_key_manager.png){: width="500px"}
+Um die Verwendung von GnuPG in Thunderbird freizugeben, navigiert man zuerst zu den Einstellungen unter */Edit/Preferences* und geht dann zum *Config Editor.* ganz untern auf der Seite. Hier muss die Einstellung **mail.openpgp.allow_external_gnupg** durch einen Doppelklick auf "true" gesetzt werden.
 
 ### Arbeiten mit OpenPGP in Thunderbird
 
@@ -120,21 +107,20 @@ Die Hauptkomponente um mit den OpenPGP-Schlüsseln zu arbeiten ist der **OpenPGP
   - [Importieren](#schlüssel-importieren) und Exportieren von
     Schlüsseln
   - Interaktion mit fremden Schlüsseln
-      - [Signieren/Zertifizieren](#schlüssel-signieren)
-      - [Besitzervertrauen festlegen](#besitzervertrauen-und-schlüsselauthentizität)
+      - [Schlüsseln vertrauen](#schlüsselauthentizität)
   
 #### Schlüssel importieren
 Wenn man jemandem eine verschlüsselte
 Email senden oder Signaturen von jemandem überprüfen möchte, braucht man
 dazu dessen öffentlichen Schlüssel. Dieser lässt sich über verschiedene
-Wege mithilfe des *Enigmail Key Management* in den lokalen Schlüsselbund
+Wege mithilfe des *OpenPGP Key Manager* in den lokalen Schlüsselbund
 importieren. Auch private Schlüssel lassen sich über diese Wege
-importieren.(das *Enigmail Key Management* Fenster findet man über die
-Menüleiste: *Enigmail/Key management*).
+importieren.(das *OpenPGP Key Manager* Fenster findet man über die
+Menüleiste: *Tools/OpenPGP Key Manager*).
 
   - **Importieren des Schlüssels über eine Datei**: Dafür muss ich den
     öffentlichen Schlüssel in Form einer Datei auf das eigene System
-    transferieren und dann im *Enigmail Key Management* über
+    transferieren und dann im *OpenPGP Key Manager* über
     *File/Import keys from file* den Schlüssel importieren.
   - **Importieren des Schlüssels über die Zwischenablage**: Habe ich den
     Schlüssel im ASCII-armor Format vorliegen, muss ich ihn nicht extra
@@ -145,67 +131,72 @@ Menüleiste: *Enigmail/Key management*).
     seinen Schlüssel auf einem Server zum Download bereit, kann man über
     die Eingabe der URL (also den Download-Link) die Datei mit dem
     öffentlichen Schlüssel herunterladen und importieren. Dafür muss
-    man im *Enigmail Key Management* die Option *Edit/Import Keys from
+    man im *OpenPGP Key Manager* die Option *Edit/Import Keys from
     URL* nutzen.
   - **Importieren des Schlüssels über einen Keyserver**: Im Grunde ist
     hier kein großer Unterschied zum Import von einer URL, da man
     genauso eine Datei von einem Keyserver herunterlädt. Der große
-    Vorteil ist aber die Suchfunktion. Im *Enigmail Key Management*
-    navigiere ich dafür auf *Keyserver/Search for Keys*. Ich importiere
+    Vorteil ist aber die Suchfunktion. Im *OpenPGP Key Manager*
+    navigiere ich dafür auf *Keyserver/Discover keys online*. Ich importiere
     hier beispielhaft den öffentlichen Schlüssel meines fiktiven
     Testkollegen Troye Finnegan:  
-    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_import_troye.png)  
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_import_troye.png){: width="500px"}  
     Nachdem ich nach ihm gesucht habe, sehe ich seinen Schlüssel und
-    kann diesen importieren.  
-    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_import_troye_fingerprint.png)  
-    Ich sehe nun den Schlüssel von Troye in meinem Schlüsselbund. Ich
-    kann im *Enigmail Key Management* auf einen Blick sehen ob es sich
+    kann diesen importieren. Dabei kann ich gleich festlegen, ob ich diesem Schlüssel vertrauen möchte oder nicht. Ich vertraue in diesem Fall dem Schlüssel von Troy, weil ich seinen Fingerprint kenne.
+    
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_import_troye_fingerprint.png){: width="500px"}  
+    Ich sehe nun den Schlüssel von Troye in meinem Schlüsselbund. Grundsätzlich
+    kann im *OpenPGP Key Manager* auf einen Blick sehen ob es sich
     bei Schlüsseln um private (fette Schrift) oder öffentliche Schlüssel
-    (normale Schrift) handelt:  
-    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_import_troye_done.png)  
+    (normale Schrift) handelt. In unserem Fall ist das aber nicht möglich, da aus Sicht des Key Managers nur die öffentlichen Schlüssel vorliegen. Deshalb sind beide Einträge (sowohl der von Troye als auch der eigene Schlüssel, zu dem wir den passenden privaten Schlüssel am YubiKey haben) in normaler Schrift:  
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_import_troye_done.png){: width="500px"}  
 
 ```tip
-**Sicherheitserwägung**: Beim Hinzufügen von öffentlichen Schlüsseln **soll** sichergestellt werden, dass es sich wirklich um den
-öffentlichen Schlüssel meines gewünschten Kommunikationspartners
-handelt\! Die Überprüfung der Authentizität des importierten Schlüssels
-hat unbedingt auf einem zweiten Kommunikationskanal zu erfolgen. Denkbar
-sind ein persönliches Treffen oder ein Telefongespräch, wenn ich die
-Stimme meines Gegenüber erkennen kann. Über diesen zweiten
-Kommunikationskanal muss der **Fingerprint des Schlüssels abgeglichen** werden. Auf dieser initialen Authentifizierung baut die Sicherheit bei
-der OpenPGP-Kommunikation auf\! Überprüft man die Authentizität nicht, so **darf der Schlüssel nicht [signiert](#schlüssel-signieren)** werden\! Außerdem muss man sich der Tatsache und Konsequenzen der
-fehlenden Authentizität bewusst sein\! 
+**Sicherheitserwägung**: Beim Hinzufügen von öffentlichen Schlüsseln **soll** sichergestellt werden, dass es sich wirklich um den öffentlichen Schlüssel meines gewünschten Kommunikationspartners handelt\! Die Überprüfung der Authentizität des importierten Schlüssels hat unbedingt auf einem zweiten Kommunikationskanal zu erfolgen. Denkbar sind ein persönliches Treffen oder ein Telefongespräch, wenn ich die Stimme meines Gegenüber erkennen kann. Über diesen zweiten Kommunikationskanal muss der **Fingerprint des Schlüssels abgeglichen** werden. Auf dieser initialen Authentifizierung baut die Sicherheit bei der OpenPGP-Kommunikation auf\! Überprüft man die Authentizität nicht, so muss man sich der Tatsache und Konsequenzen der fehlenden Authentizität bewusst sein\! 
 ```
- 
-  
-  
 
 #### Privaten Schlüssel vom YubiKey verfügbar machen
 
 Im Ausschnitt oben hat man bereits meinen öffentlichen Schlüssel
-gesehen. Dieser hat die Key-ID mit der Endung "59C51". Wenn ich aber
-Enigmail auf einem neuen System installiere ist mein Schlüssel noch
+gesehen. Dieser hat die Key-ID mit der Endung "AAFAE". Wenn ich aber
+Thunderbird und gpg auf einem neuen System installiere ist mein Schlüssel noch
 nicht am System. In diesem Absatz gehe ich davon aus, dass der eigene
 Schlüssel noch nicht am System bekannt ist. Ich sehe also nur den zuvor
 hinzugefügten Schlüssel von Troye:  
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_privavail_troye.png)  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_privavail_troye.png){: width="500px"}
+Zuerst muss der öffentliche Schlüssel im **OpenPGP Key Manager** hinzugefügt werden. Dieser ist erreichbar über das Menü */Tools/OpenPGP Key Manager*. Dort gibt es mehrere Import-Möglichkeiten. Am schnellsten geht es wieder über die "URL of public key". Ist sie auf der Smartcard gesetzt, lässt sie sich einfach über den Karten-Status abrufen:
+
+```bash
+gpg --card-status
+...
+URL of public key : https://keys.openpgp.org/vks/v1/by-fingerprint/A662724593E61256E4ADB82E1E360B1A218AAFAE
+...
+```
+Diese URL muss dann kopiert werden, im *OpenPGP Key Manager* unter */Edit/Import Key(s) from URL* eingefügt, und der Schlüssel hinzugefügt werden:
+
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_key_manager.png){: width="500px"}
+
+Je nachdem ob man den Schlüssel beim Import Akzeptiert hat oder nicht, muss nun noch die Authentizität des
+Schlüssels bestätigt werden. Diese Akzeptanz des schlüssels gibt an, ob Thunderbird Signaturen von diesem Schlüssel vertrauen und diese als valide ansehen soll. Ein kleiner Einstieg in das Thema [Schlüsselauthentizität](#schlüsselauthentizität) gibt es
+weiter unten.
+
+Besitzervertrauen setzen im *OpenPGP Key Manager*: Mit einem
+Rechtsklick auf den gewünschten Schlüssel öffnet man das Menü *Key
+Properties* und setzt die Akzeptanz auf die höchste Stufe.
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_certify_keys.png){: width="500px"}
+
+Zusätzlich muss nun für die externe GnuPG-Verwendung, der Schlüssel auch im gpg-Schlüsselbund hinzugefügt werden.
 Da es sich bei den privaten Schlüsseln am YubiKey ausschließlich um
-Subschlüssel handelt, benötigen wir im lokalen Schlüsselbund zumindest
+Subschlüssel handelt, benötigen wir im gpg-Schlüsselbund zumindest
 den öffentlichen Schlüssel. Dieser liefert uns die notwendigen
 Informationen über die Struktur unseres OpenPGP-Schlüssels. Der gesamte
 OpenPGP-Schlüssel besteht nämlich aus dem Hauptschlüssel (dieser hat den
-Fingerprint mit der Endung "59C51") und den drei zugehörigen
+Fingerprint mit der Endung "AAFAE") und den drei zugehörigen
 Subschlüsseln deren private Teile sich am YubiKey befinden. Um nun den
-eigenen öffentlichen Schlüssel zu importieren gibt es die gleichen Wege
-wie oben im Abschnitt [Schlüssel importieren](#schlüssel-importieren)
-beschrieben. Ein Import der öffentlichen Schlüssel direkt vom YubiKey
-auf das jeweilige System ist nicht möglich, da dafür nicht genügend
-Informationen über den öffentlichen Schlüssel auf dem YubiKey
-gespeichert sind\! Eine weitere sehr praktische Variante ist die Nutzung
-der "URL of public key", die wir auf unserem YubiKey [hinterlegt
-haben](/YubiKeyWiki/docs/OpenPGP#metadaten-auf-den-yubikey-laden).
-Dieser Weg des Imports ist aber nur über das gpg-Kommando möglich.
-Einfach den YubiKey am System anstecken und in der Kommandozeile
-folgende Befehle ausführen:
+eigenen öffentlichen Schlüssel zu importieren nutzen wir die "URL of public key", die wir auf unserem YubiKey [hinterlegt haben](/YubiKeyWiki/docs/OpenPGP#metadaten-auf-den-yubikey-laden).
+Dieser Weg des Imports ist nur über das gpg-Kommando möglich und kann lediglich Schlüssel in den gpg-Schlüsselbund hinzufügen.
+Dazu ist der YubiKey am System anzustecken und in der Kommandozeile
+folgender Befehl auszuführen:
 
 ``` bash
 kali@kali:~$ gpg --edit-card
@@ -222,113 +213,48 @@ Schlüssel auch im privaten Schlüsselbund:
 kali@kali:~$ gpg -K
 /home/kali/.gnupg/pubring.kbx
 -----------------------------
-sec#  rsa4096 2020-04-16 [C] [expires: 2025-04-15]
-      3E0F0BA9061396B9302767F860E2EB9A7EF59C51
-uid           [ultimate] Kristoffer Dorfmayr <kristoffer.dorfmayr@hagenbergerkreis.at>
+sec>  rsa4096 2020-04-16 [SC] [expires: 2025-04-15]
+      A662724593E61256E4ADB82E1E360B1A218AAFAE
+      Card serial no. = 0006 12015372
+uid           [ unknown] Kristoffer Dorfmayr <kristoffer.dorfmayr@gmail.com>
+uid           [ unknown] Kristoffer Dorfmayr <S1810239005@students.fh-hagenberg.at>
+uid           [ unknown] Kristoffer Dorfmayr <kristoffer.dorfmayr@hagenbergerkreis.at>
 ssb>  rsa4096 2020-04-16 [E] [expires: 2025-04-15]
-ssb>  rsa4096 2020-04-16 [S] [expires: 2025-04-15]
 ssb>  rsa4096 2020-04-16 [A] [expires: 2025-04-15]
 ```
 
-Der Hash ("\#") neben "sec" (Privates Schlüsselpaket) sagt mir, dass der
-Hauptschlüssel nicht verfügbar ist. Das ist auch verständlich, da am
-YubiKey nur die drei Subschlüssel zum Signieren, Verschlüsseln und zur
-Authentisierung liegen. Das Größer-Zeichen ("\>") neben "ssb" (Privates
+Das Größer-Zeichen ("\>") neben "sec" (Privates Schlüsselpaket) und "ssb" (Privates
 Subschlüsselpaket) zeigt an, dass sich der private Schlüssel auf einer
-Smartcard (YubiKey) befindet. Jetzt müssen wir die Authentizität des
-Schlüssels noch bestätigen. Um einen Schlüssel als authentisch zu
-erklären, muss man diesen mit dem eigenen Zertifizierungsschlüssel
-Signieren/Zertifizieren. Der Zertifizierungsschlüssel ist in diesem Fall
-der Hauptschlüssel, dessen Verwendung mit einem \[C\] für "Certify"
-ausgestattet ist. Nachdem der eigene Schlüssel (und seine Subschlüssel)
-immer automatisch bei der Erstellung signiert werden (="self signed"),
-ist das schon erledigt. Wir müssen aber zusätzlich festlegen, ob wir der
-Person vertrauen die mit diesem Zertifizierungsschlüssel andere
-Schlüssel Signiert/Zertifiziert. Dieses "Vertrauen" nennt sich "Owner
-Trust". Derzeit ist das Benutzervertrauen "\[unknown\]". Das lässt sich
-sowohl im Enigmail als auch in der Komandozeile ändern. Da es sich hier
-um unseren eigenen Schlüssel handelt, vertrauen wir Zertifizierungen die
-mit diesem Schlüssel gemacht werden ultimativ ("Ultimate"). Ein kleiner
-Einstieg in das Thema [Vertrauen und Authentizität](#übersicht-vertrauen-und-authentizität) gibt es
-gleich im Anschluss an diesen Abschnitt.
+Smartcard (YubiKey) befindet. 
 
-  - Besitzervertrauen setzen im *Enigmail Key Management*: Mit einem
-    Rechtsklick auf den gewünschten Schlüssel öffnet man das Menü *Key
-    Properties* und setzt das Vertrauen auf "Ultimate"  
-    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_certify_keys.png)
-  - Besitzervertrauen setzten in der Kommandozeile:
-  ```
-kali@kali:~$ gpg --edit-key kristoffer.dorfmayr@hagenbergerkreis.at
-    gpg> trust
-    Please decide how far you trust this user to correctly verify other users' keys (by looking at passports, checking fingerprints from different sources, etc.)
-    
-            1 = I don't know or won't say
-            2 = I do NOT trust
-            3 = I trust marginally
-            4 = I trust fully
-            5 = I trust ultimately
-            m = back to the main menu
-    
-    Your decision? 5
-    Do you really want to set this key to ultimate trust? (y/N) y
-    ```
+Abschließend muss im jeweiligen Mailaccount, bei welchem der PGP-Schlüssel verwendet werden soll, die Nutzung dieses Schlüssels festgelegt werden. In die Account-Einstellungen gelangt man über */Edit/Account Settings* und wählt dort beim gewünschten Mailaccount den Menüpunkt *End-To-End Encryption* aus. Jetzt kann unter **OpenPGP** ein Schlüssel durck Klick auf *+ Add Key...* hinzugefügt werden. Dazu muss die 16-Zeichen lange Key-ID eingegeben werden. (siehe dazu die [Voraussetzungen](/YubiKeyWiki/docs/OpenPGP/mailverschluesselung.html#voraussetzungen))
 
-  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_key2account.png){: width="500px"}
 
-#### Übersicht Vertrauen und Authentizität
-
-Der Begriff "Vertrauen" ist bei OpenPGP mit zwei Bedeutungen überlagert.
-Einerseits das "Vertrauen in einen Schlüssel", andererseits das
-"Vertrauen in den Besitzer (Eigentümer) eines Schlüssels". Um hier eine
-klare Abtrennung zu schaffen verwenden wir die Begriffe "Authentizität"
-des Schlüssels (siehe 1.) und "Besitzervertrauen" (siehe 2.):
-
-1.  **Schlüsselauthentizität**: Ich [signiere](#schlüssel-signieren)
-    öffentliche Schlüssel und sage damit aus, dass ich diese für
-    authentisch befinde. Ich binde also den öffentlichen Schlüssel zu
-    den Angaben des Besitzers (Name und Email), nachdem ich diese
-    Zusammengehörigkeit überprüft/verifiziert/validiert habe.
-2.  **Besitzervertrauen**: Jeder Schlüssel in meinem Schlüsselbund hat
-    ein Vertrauenslevel (=Besitzervertrauen). Damit gebe ich an, wie
-    sehr ich dem Besitzer des Schlüssels vertraue, dass er die
-    Authentizität anderer Schlüssel überprüft, bevor er sie signiert.
-
-Ob GnuPG einen Schlüssel als authentisch betrachtet hängt davon ab:
-
-  - ob ich ihn signiert habe, oder
-  - ob genügend Vertrauenswürdige (Besitzervertrauen\!) Personen den
-    Schlüssel signiert haben.
-
-Was "genügend" hier genau bedeutet ist im Abschnitt [Besitzervertrauen und Schlüsselauthentizität](#besitzervertrauen-und-schlüsselauthentizität)
-erklärt.  
-  
 
 #### Geschützte Email versenden
 
 Jetzt wird es Zeit die erste OpenPGP-geschützte Email zu versenden\!
 Beim Erstellen von Emails kann man auswählen, ob diese verschlüsselt
-werden sollen (Anklicken des kleinen Schloss Symbols) und ob sie
-Signiert werden soll (kleines Stiftsymbol). Ich versende eine Email an
-Troye und wähle sowohl Verschlüsseln als auch Signieren aus. Zusätzlich
-kann ich noch überprüfen, ob Enigmail auch den Betreff der Email
-schützen wird. Dafür Schaue ich ins Enigmail Menü und versichere mich,
-dass der Haken bei "Protect Subject" gesetzt ist.  
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_sendmail.png)  
+werden sollen und ob sie signiert werden soll. Ich versende eine Email an
+Troye und wähle sowohl Verschlüsseln als auch Signieren im Drop-Down-Menü *Security* aus.
+Je nachdem was ausgewählt ist erscheint beim Signieren rechts unten ein kleines Siegel und beim Verschlüsseln ein kleines Schloss. Außerdem wird das verwendete Verfahren (OpenPGP oder S/MIME) angezeigt.
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_sendmail.png){: width="600px"}  
   
 Wenn ich auf "Send" klicke werden im Hintergrund automatisch die
 passenden Schlüssel herausgesucht:
 
-  - Enigmail findet einen öffentlichen Schlüssel für
+  - Thunderbird findet einen öffentlichen Schlüssel für
     "finnegan.troye@gmail.com" und nutzt diesen zur
     Email-Verschlüsselung.
-  - Enigmail nutzt auch meinen öffentlichen Schlüssel zur
+  - Thunderbird nutzt auch meinen öffentlichen Schlüssel zur
     Email-Verschlüsselung, damit ich sie selbst wieder entschlüsseln
     und somit lesen kann.
-  - Enigmail erkennt, dass es zum Signieren einen privaten
+  - Thunderbird erkennt, dass es zum Signieren einen privaten
     Signaturschlüssel auf einer SmartCard gibt. Bevor der YubiKey die
     Email signiert, werde ich noch nach dem Pin gefragt, und muss den
     Signaturvorgang mit einer Berührung am YubiKey bestätigen:  
-    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_sendmail_pin.png)  
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_sendmail_pin.png)  
     Falls ihr die Touch Policy und das Pin Setup noch nicht konfiguriert
     habt findet ihr Informationen dazu [hier](/YubiKeyWiki/docs/verwaltung#310-openpgp-verwalten).  
       
@@ -340,209 +266,34 @@ Sofort wenn ich auf die erhaltene Nachricht klicke, versucht Enigmail
 diese zu entschlüsseln. Natürlich muss ich auch hier wieder meinen Pin
 eingeben und die Entschlüsselung mit meinem privaten Schlüssel durch
 eine Berührung des YubiKey autorisieren.  
-![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_enigmail_getmail.png)  
-Das Schlosssymbol zeigt uns, dass es sich um eine verschlüsselte
-Nachricht handelt. Der kleine Brief sagt uns, dass es sich um eine
-signierte Nachricht handelt. Zusätzlich bekommen wir die Nachricht "Good
-Signature from Troye..". Das bedeutet, dass die Email, seit Anbringen
-der Signatur nicht verändert wurde. Beim kleinen Briefsymbol befindet
-sich aber ein blaues Fragezeichen und die Bannerinformation ist türkis
-hinterlegt. Das sind Hinweise darauf, dass GnuPG den Schlüssel noch
-nicht für authentisch befindet. Das kann man ändern, indem man ihn mit
-dem privaten Zertifizierungsschlüssel (also dem Hauptschlüssel)
-signiert. Weitere Informationen hierzu im nächsten Abschnitt.  
+![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_getmail.png){: width="600px"} 
+Das Schlosssymbol mit dem kleinen grünen Haken zeigt uns, dass es sich um eine verschlüsselte
+Nachricht handelt. Das kleine Siegel sagt uns, dass es sich um eine valide und akzeptierte (vertraute) Signatur handelt. Mehr dazu im nächsten Abschnitt.
   
+#### Schlüsselauthentizität
 
-#### Schlüssel signieren
+In Thunderbird sind das Signieren von Schlüsseln und die Nutzung des Web-of-Trust im Gegensatz zu GnuPG nicht möglich. (Stand: Oktober 2021) Jeden Schlüssel, welchem man vertrauten möchte, muss man selbst akzeptieren. Dies kann auf zwei Arten geschehen:
+  - Unmittelbar beim Importieren des Schlüssels, so wie im Abschnitt [Schlüssel Importieren](#schlüssel-importieren) gezeigt.
+  - Über die *Key Properties* des jeweiligen Schlüssels im *OpenPGP Key Manager*.
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_key_properties.png){: width="600px"}
 
-Wenn man den OpenPGP-Schlüssel von jemandem signiert, wird dessen
-öffentlichem OpenPGP-Schlüssel einfach ein Signaturenpaket ("Signature
-packet") angehängt. In diesem Paket befindet sich eine Signatur über das
-"Public Key Packet" (also den öffentlichen Hauptschlüssel) und ein "User
-ID Packet" (also eine spezifische Identität bestehend aus Email und
-Name). Sollte man einen öffentlichen Schlüssel signieren, der mehrere
-Identitäten (also Email Adressen) hat, wird für jede Identität ein
-eigenes Signaturenpaket erstellt und dem öffentlichen Schlüssel
-angehängt.<sup>[\[4, Kapitel 5.2\]](#quellen)</sup> Wenn von
-"Zertifizieren" die Rede ist (= certify), dann meint man damit das
-Signieren eines Schlüssels. Im Enigmail sieht man die Äquivalenz dieser
-beiden Ausdrücke sehr gut. In den *Key Properties* eines Schlüssels gibt
-des den Knopf *Certify* zum Signieren von Schlüsseln. Ein Rechtsklick
-auf einen Schlüssel im *Enigmail Key Management* ermöglicht die Auswahl
-der Option *Sign Key* die ebenfalls zum Signieren von Schlüsseln dient.
-Beide Wege öffnen das exakt gleiche Fenster und dienen dem Signieren von
-Schlüsseln (=Zertifizieren).  
+Je nachdem wie ich die Akzeptanz eingestellt habe, ändert sich bei der erhaltenen E-Mail das Signatur-Icon und die Zusatzinformation:
+  - Akzeptanz auf **"Ablehnen"** (*No, reject this key*):
 
-```tip
-**Sicherheitserwägung**: Beim signieren von öffentlichen Schlüsseln **muss** sichergestellt werden, dass es sich wirklich um den
-öffentlichen Schlüssel meines gewünschten Kommunikationspartners
-handelt\! Die Überprüfung der Authentizität des importierten Schlüssels
-hat unbedingt auf einem zweiten Kommunikationskanal zu erfolgen. Denkbar
-sind ein persönliches Treffen oder ein Telefongespräch, wenn ich die
-Stimme meines Gegenüber erkennen kann. Über diesen zweiten
-Kommunikationskanal muss der **Fingerprint des Schlüssels abgeglichen** werden. Auf dieser initialen Authentifizierung baut die Sicherheit bei
-der OpenPGP-Kommunikation auf\!
-```
-  
-  
-Wie im Abschnitt [Geschützte Email empfangen](#geschützte-email-empfangen) bereits angesprochen, wird
-zum Signieren von Schlüsseln, der Zertifizierungsschlüssel (also der
-private Hauptschlüssel, mit der Eigenschaft \[C\] für "Certify")
-benötigt. Der Hauptschlüssel liegt aber nicht am YubiKey, da dieser nur
-Platz für die drei Unterschlüssel bietet. Dieser soll ausschließlich auf
-unserem sicheren System liegen, auf dem wir unseren OpenPGP-Schlüssel
-erstellt haben. Er ist aufgrund seiner Fähigkeiten besonders
-schützenswert: Mit ihm kann man andere Schlüssel signieren und den
-eigenen Schlüssel verwalten (Ablaufdatum verändern, (Sub-)Schlüssel
-widerrufen und neue Subschlüssel hinzufügen).  
-Andere Schlüssel zu Signieren ist uns also nur auf dem einen sicheren
-System möglich. Öffentliche Schlüssel müssen dort signiert, exportiert
-und auf alle gewünschten Systeme transferiert werden. Für den Transfer
-der Schlüssel bietet sich beispielsweise eine Email an, die man an sich
-selbst versendet. In den Anhang legt man alle exportierten öffentlichen
-Schlüssel, die man bereits signiert hat, und hat so die Schlüssel mit
-ihren Signaturen auf allen Email Clients verfügbar.  
-Nun aber zurück zum Signieren von Schlüsseln in Enigmail. Derzeit habe
-ich den Schlüssel von Troye noch nicht signiert, weshalb die
-Authentizität des Schlüssel auch noch nicht angegeben ist ("-" Eintrag
-im Feld "Key Validity"):  
-![]({{ site.baseurl }}{{ page.dir }}img/enigmail_sign1.png)  
-Mit einem Rechtsklick auf den Schlüssel "Sign Key" öffnet sich das
-Fenster zum Signieren des Schlüssels:  
-![]({{ site.baseurl }}{{ page.dir }}img/enigmail_sign2.png)  
-Wenn man mehrere Schlüssel im privaten Schlüsselbund hat, welche die
-"Certify" Eigenschaft besitzen, kann man diese über das "Key for
-signing" Drop-Down Menü auswählen. Ich habe nur den einen Hauptschlüssel
-mit der Endung "59C51" und werde mit diesem, den öffentlichen Schlüssel
-von Troye signieren.  
-Die Abfrage, wie genau man die Authentizität des Schlüssels überprüft
-hat, hat Auswirkung auf den Signaturtyp<sup>[\[4, Kapitel 5.2.1\]](#quellen)</sup>, der im Signaturpaket vermerkt ist. Im Grunde
-ist das für Enigmail aber unerheblich - signiert ist signiert.  
-Die Auswahl "Local signature" ermöglicht es, schlüssel lokal, also nicht
-exportierbar zu signieren. Das heißt, dass sich Enigmail die Signatur
-merkt, das Signaturenpaket aber nicht im GPG-Schlüsselbund an den
-jeweiligen Schlüssel angehängt wird. Exportiert man diesen signierten
-öffentlichen Schlüssel wird eine lokale Signatur also nicht
-mit-exportiert. Sollte man später von einer lokalen Signatur auf eine
-"normale" Signatur umsteigen wollen, kann man den Schlüssel einfach
-erneut signieren, nur ohne die Auswahl der lokalen Signatur.  
-Nach Bestätigen des Dialoges und Eingabe der Passphrase wird meine
-Signatur dem öffentlichen Schlüssel angehängt. Ersichtlich ist diese
-Signatur in den Schlüsseleigenschaften des signierten Schlüssels
-(*rechtsklick/Key Properties/Certifications*):  
-![]({{ site.baseurl }}{{ page.dir }}img/enigmail_sign3.png)  
-Hier können ohne weiteres auch mehrere Signaturen aufscheinen.
-Einerseits die Signaturen des Hauptschlüssels über sich selbst und seine
-Subschlüssel, andererseits Signaturen von den Schlüsseln anderer Nutzer.
-Mithilfe des Kommandozeilenprogrammes *pgpdump* kann man sich den
-genauen Aufbau eines Schlüssels sehr gut ansehen. Man sieht hier das
-hinzugefügte Signaturpaket (Zeile 13), das mit meinem Schlüssel mit der
-Endung "59C51" (Zeile 19) über den öffentlichen Schlüssel (Paket beginnt
-in Zeile 2) und die Identität (Paket beginnt in Zeile 8) erstellt wurde:
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_key_rejected.png){: width="450px"}
 
+  - Akzeptanz auf **"Unentschieden"** (*Not yet, maybe later.*):
 
-```bash
-1     kali@kali:~$ pgpdump finnegan.troye_pub.asc 
-2     Old: Public Key Packet(tag 6)(525 bytes)
-3             Ver 4 - new
-4             Public key creation time - Fri May 15 20:30:53 CEST 2020
-5             Pub alg - RSA Encrypt or Sign(pub 1)
-6             RSA n(4096 bits) - ...
-7             RSA e(17 bits) - ...
-8     Old: User ID Packet(tag 13)(41 bytes)
-9             User ID - Troye Finnegan <finnegan.troye@gmail.com>
-10    
-11            - Zeilen gekürzt -
-12    
-13    Old: Signature Packet(tag 2)(563 bytes)
-14            Ver 4 - new
-15            Sig type - Positive certification of a User ID and Public Key packet(0x13).
-16            Pub alg - RSA Encrypt or Sign(pub 1)
-17            Hash alg - SHA256(hash 8)
-18            Hashed Sub: issuer fingerprint(sub 33)(21 bytes)
-19             v4 -   Fingerprint - a6 62 72 45 93 e6 12 56 e4 ad b8 2e 1e 36 0b 1a 21 8a af ae 
-20     
-21            - Zeilen gekürzt -
-```
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_key_unaccepted.png){: width="450px"}
 
+  - Akzeptanz auf **"Akzeptiert und unverifiziert"** (*Yes, but i have not verified that it is the correct key.*) - diese Option würde man wählen, wenn man zwar den Schlüssel verwenden möchte, man jedoch den Fingerprint des Schlüssels noch nicht auf seine Korrektheit überprüft hat:
 
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_key_accepted_unverified.png){: width="450px"}
 
-Durch das Signieren des Schlüssels ist die Autzentizität des Schlüssels
-(Gültigkeit) auf "trusted" gewechselt:  
-![]({{ site.baseurl }}{{ page.dir }}img/enigmail_sign4.png)  
-  
-Weitere Informationen über das Vertrauen gegenüber von Schlüsseln und
-Schlüsselbesitzern im nächsten Abschnitt.  
-  
+  - Akzeptanz auf **"Akzeptiert und verifiziert"** (*Yes, I've verified in person this key has the correct fingerprint*):
 
-#### Besitzervertrauen und Schlüsselauthentizität
+    ![]({{ site.baseurl }}{{ page.dir }}img/thunderbird_key_accepted_verified.png){: width="450px"}
 
-(Der Begriff "Vertrauen" bezieht sich im folgenden Abschnitt
-ausschließlich auf das Besitzervertrauen\!)
-
-Ob GnuPG (und in weitere Folge auch wir) einen Schlüssel für Authentisch
-befinden, also ob dessen "Key Validity" auf "trusted" gesetzt wird,
-hängt von zwei Faktoren ab. Einerseits der Anzahl an Zertifizierungen
-von anderen Personen. Andererseits aber auch vom Besitzervertrauen, das
-wir für diese Personen jeweils festlegen. Wie genau sich diese Faktoren
-auswirken ist im [GNU Privacy
-Handbook](https://gnupg.org/gph/de/manual/x420.html#AEN482) beschrieben
-und wurde aus diesem leicht adaptiert
-übernommen<sup>[\[5\]](#quellen)</sup>:  
-  
-Ein Schlüssel *K* erhält den Status *gültig* (*trusted*), wenn beide der
-folgenden Bedingungen erfüllt sind:
-
-1.  Der Schlüssel *K* ist von genügend gültigen (authentischen)
-    Schlüsseln unterschrieben, was hießt, dass er entweder
-      - von *Ihnen persönlich* ("*Ultimate* Trust")
-      - von *einem Schlüssel vollen Vertrauens* ("*Complete* Trust")
-        oder
-      - von *drei Schlüsseln teilweisen Vertrauens* ("*Marginal* Trust")
-        unterschrieben wurde.
-2.  Der Pfad unterschriebener Schlüssel, der vom Schlüssel K zurück zu
-    Ihrem eigenen Schlüssel führt, besteht aus *maximal fünf
-    Schritten*.  
-      
-
-Wie sehr wir dem Besitzer eines Schlüssel vertrauen, dass er andere
-Schlüssel vor dem Zertifizieren gewissenhaft überprüft, legen wir im
-jeweiligen *Key Properties* Fenster fest. Zu dem kommen wir über das
-*Enigmail Key Management* durch *Rechtsklick/Key Properties* auf den
-Schlüssel, dessen Besitzervertrauen wir festlegen möchten. Dort können
-wir Fenster zum Ändern des Benutzervertrauens aufrufen:  
-![]({{ site.baseurl }}{{ page.dir }}img/enigmail_trust1.png)  
-Hier finden wir nun die Vertrauensstufen wieder, die schon in obigem
-Algorithmus zur Festlegung des Schlüsselvertrauens vorgekommen sind. Ich
-setze das Besitzervertrauen für Troye auf "Complete":  
-![]({{ site.baseurl }}{{ page.dir }}img/enigmail_trust2.png)  
-Das gesetzte Benutzervertrauen sehe ich nun auch im *Enigmail Key
-Management*:  
-![]({{ site.baseurl }}{{ page.dir }}img/enigmail_trust3.png)  
-Durch dieses gegenseitige Zertifizieren und Vertrauen kann ein komplexes
-"Vertrauensgebilde" entstehen, das sich "Web of Trust" nennt. Ein
-konkretes Beispiel für eine solche Vertrauenskette findet sich im [GNU Privacy Handbook](https://gnupg.org/gph/de/manual/x420.html#AEN482). Hier zur Veranschaulichung nur ein kleines Beispiel:
-
-##### Beispiel Besitzervertrauen
-
-Angenommen Troye hat den Schlüssel von seinem Freund Tristan signiert
-und hat ihn mir übermittelt. Wenn ich nun diesen Schlüssel von Tristan
-importiere, wird er als authentisch angezeigt (die "Key Validity" ist
-"trusted"), obwohl ich ihn nicht signiert habe und auch das
-Besitzervertrauen von Tristan nicht gesetzt ist:  
-![]({{ site.baseurl }}{{ page.dir }}img/gpg_mail_trust_01.png)  
-Beim Schlüssel von Troye handelt es sich nach dem [obigen Algorithmus zur Festlegung der Authentizität](#besitzervertrauen-und-schlüsselauthentizität) um
-einen "Schlüssel vollen Vertrauens". Wir haben nämlich das
-Besitzervertrauen für Schlüsselsignaturen von Troye auf "trusted"
-gesetzt. In weiterer Folge werden alle Schlüssel als Authentisch
-eingestuft, die von ihm signiert wurden. Die Signatur von Troye in
-Tristans Schlüssel können wir in den Schlüsseldetails sehen:  
-![]({{ site.baseurl }}{{ page.dir }}img/gpg_mail_trust_02.png)  
-Bekommen wir nun eine signierte Email von Tristan, wird diese Email als
-authentisch eingestuft. Das erkennen wir am grünen Banner und dem Kuvert mit dem roten Siegel:
-
-![]({{ site.baseurl }}{{ page.dir }}img/gpg_mail_trust_03.png)  
-  
 
 #### Verteilen von Schlüsseln
 
@@ -575,14 +326,7 @@ sind<sup>[\[6\]](#quellen)</sup>:
     Upload aber zumindest eine Bestätigungsmail an die zum Schlüssel
     gehörige Email-Adresse sendet, ist das Risiko verringert.
 
-Aufgrund dieser Problematiken gibt es seit GnuPG
-2.2.17<sup>[\[7\]](#quellen)</sup> die Standardeinstellung, dass beim
-Herunterladen von Schlüsseln aus Schlüsselservern immer alle Signaturen
-von Dritten entfernt werden. Damit geht leider die Funktionalität des
-"Web of Trust" verloren. Signierte Schlüssel, die nicht über
-Schlüsselserver importiert werden, lassen sich aber nach wie vor mit
-ihren Signaturen importieren.  
-Auch die Community rund um [Sequoia-PGP](https://sequoia-pgp.org/),
+Die Community rund um [Sequoia-PGP](https://sequoia-pgp.org/),
 [OpenKeychain](https://www.openkeychain.org/) und
 [Enigmail](https://enigmail.net/index.php/en/) hat sich dieser
 Problematik angenommen und betreibt nun einen neuen Keyserver:
@@ -595,32 +339,16 @@ kennt. Damit wird verhindert, dass Bots automatisiert Schlüssel
 herunterladen können. Und um die Problematik der vielen Signaturen zu
 adressieren, werden beim Hochladen eines Schlüssels alle Signaturen von
 fremden Schlüsseln entfernt.<sup>[\[8\]](#quellen)</sup>  
-In Enigmail ist seit Version 2.1 (für Thunderbird 68) der Standard
-Schlüsselserver keys.openpgp.org.<sup>[\[9\]](#quellen)</sup>  
-Kurz zusammengefasst bedeutet das: Die Standardeinstellungen in Enigmail
-und GnuPG sind in Bezug auf die Problematiken der Keyserver ausreichend
-sicher. Wir empfehlen dennoch ausschließlich Schlüsselserver zu
-verwenden, die eine Email-Verifizierung durchführen. (mehr dazu unter
-[Konfigurationsempfehlungen](#Konfigurationsempfehlungen) Leider ist es
-aber aufgrund der Standardeinstellungen nicht mehr möglich, Signaturen
-fremder Schlüssel über Schlüsselserver zu
-beziehen.<sup>[\[8\]](#quellen)</sup> Die Community des keys.openpgp.org
-Schlüsselservers arbeitet aber bereits daran, dass Signaturen Dritter
-wieder möglich werden, wie sie in ihren
-[News](https://keys.openpgp.org/about/news) berichten. Eine Signatur
-soll demnach nur dann über den Schlüsselserver verfügbar sein, wenn der
-Schlüsselbesitzer diese attestiert (also signiert). Die
-[OpenPGP-WorkingGroup](https://datatracker.ietf.org/wg/openpgp/documents/)
-arbeitet dafür schon an einer [Änderung für den
-RFC4880](https://gitlab.com/openpgp-wg/rfc4880bis/-/merge_requests/20/diffs).
-(Stand Mai 2020)
+In Thunderbird ist der Standard Schlüsselserver keys.openpgp.org.
+
+Kurz zusammengefasst bedeutet das: Die Standardeinstellung in Thunderbird ist in Bezug auf die Problematiken der Keyserver ausreichend
+sicher.
 
 ```tip
 **Sicherheitserwägung**: Wir empfehlen aus oben genannten Gründen
 ausschließlich Schlüsselserver zu verwenden, welche die Email-Adresse
-eines hochgeladenen Schlüssels verifizieren: \<code\>
-hkps:*keys.openpgp.org, hkps:*keys.mailvelope.com,
-hkps://keyserver1.pgp.com/ \</code\>  
+eines hochgeladenen Schlüssels verifizieren: *hkps://keys.openpgp.org*, *hkps://keys.mailvelope.com*,
+*hkps://keyserver1.pgp.com/*
 ```   
 
 #### Schlüssel widerrufen
@@ -633,13 +361,13 @@ widerrufen:
 
   - Über ein zuvor erstelltes Widerrufszertifikat, welches in einer
     Datei abgespeichert wird. Die Datei kann in Enigmail ganz einfach im
-    *Enigmail Key Management* über *File/Import keys from file*
+    *OpenPGP Key Manager* über *File/Import Revocation(s) From File*
     importiert werden. Es ist daher empfohlen für den Fall des
     Schlüsselverlustes bereits beim Erstellen des eigenen
     OpenPGP-Schlüssels ein Widerrufszertifikat zu erstellen. Das wurde
     aber bereits in unserem Hauptartikel [OpenPGP](/YubiKeyWiki/docs/OpenPGP) beschrieben.
   - Wenn man den Hauptschlüssel noch besitzt, kann man ihn zum
-    Widerrufen nutzen. Dafür navigiert man im *Enigmail Key Management*
+    Widerrufen nutzen. Dafür navigiert man im *OpenPGP Key Manager*
     über den gewünschten Schlüssel und wählt nach einem Rechtsklick die
     *Revoke Key* Option.
 
@@ -668,13 +396,7 @@ key 2
 revkey
 save
 ```
-
-Ich erstelle auch gleich einen neuen Authentifizierungs-Unterschlüssel.
-Wie man Schlüssel erstellt und auf den YubiKey transferiert erklären wir
-in unserem [OpenPGP](/YubiKeyWiki/docs/OpenPGP) Artikel. Das
-Ergebnis kann ich gleich in den *Key Properties* von Enigmail unter dem
-Tab *Structure* einsehen:  
-![]({{ site.baseurl }}{{ page.dir }}img/enigmail_revoc1_new.png)  
+  
 Sobald ich einen Schlüssel widerrufen habe, muss ich diese Änderung
 sofort an alle Kommunikationspartner weiterleiten\! Dafür kann ich
 entweder den öffentlichen Schlüssel exportieren und selbst verteilen,
@@ -733,83 +455,17 @@ key 2
 expire
 2y
 ```
+#### Fehlende Funktionalität
 
-#### YubiKey Management
+Nachdem mit Thunderbird 78 die unterstützung für das Enigmail-Plugin, welches im Hintergrund GnuPG verwendete, auslief, wurde die OpenPGP-Funktionalität in Thunderbird direkt eingebaut. Leider fehlen hier derzeit noch einige Features, welche möglicherweise mit folgenden Versionen ergänzt werden: (Stand Oktober 2021)
 
-Enigmail bietet auch ein Interface zum Verwalten von Smartcards.
-Ernsthafte Konfigurationseinstellungen kann man damit allerdings nicht
-vornehmen, weshalb unbedingt das GnuPG Kommandozeilentool verwendet
-werden soll. In Enigmail ist es nicht möglich, selbst erstellte
-Schlüssel auf den YubiKey zu transferieren. Die Generierung von
-Schlüsseln auf dem YubiKey ist überdies voreingestellt nur für 2048-Bit
-RSA Schlüssel möglich. Für einen schnellen Blick auf die Einstellungen
-des YubiKey und das Ändern der PINs ist Enigmail aber ausreichend. Über
-die Menüleiste *Enigmail/Manage SmartCard ...* öffnet sich das *OpenPGP
-SmartCard Details* Fenster. Hier werden OpenPGP bezogene Informationen
-über den YubiKey angezeigt:  
-![]({{ site.baseurl }}{{ page.dir }}img/enigmail_smartcard1.png)  
-Über *SmartCard/Edit Card Data* lassen sich in eben diesem Fenster Name,
-Sprache, Geschlecht, Link zum öffentlichen Schlüssel, Login-Daten für
-den Keyserver, und das "Force signature PIN"-Flag ändern.  
-Über das Menü *SmartCard/Change PIN* öffnet sich ein Fenster zum Ändern
-des *PIN*, *Admin PIN* und des *Unblock PIN*.
+  - Signieren von Schlüsseln
+  - Vertrauen von Schlüsseln auf Basis der Signaturen
+  - Web-of-Trust Funktionalität
+  - Automatischer Key-Refresh von Schlüsselservern
+  - Nutzen von passwort-geschützten Schlüsseln (on-demand unlocking)
 
-#### Konfigurationsempfehlungen
 
-In Enigmail gibt es zwei zentrale Menüs, über die man
-Konfigurationseinstellungen treffen kann. Einerseits die Einstellungen
-von Enigmail selbst (*Menüleiste/Enigmail/Preferences*), andererseits
-die Enigmail-bezogenen Einstellungen für jeden Mailaccount (*rechte
-Maustaste auf Mailaccount/Settings/OpenPGP Security*). Beginnen wir mit
-den generellen Enigmail Einstellungen unter
-*Menüleiste/Enigmail/Preferences*:
-
-  - Allgemein (Basic):
-      - Die Ablaufzeit der Passphrase sollte auf 0 Minuten gestellt
-        werden. Ein Merken der Passphrase würde mehr Komfort bieten,
-        wenn wir keinen YubiKey hätten, da wir dann beim Signieren und
-        Entschlüsseln immer die Passphrase eingeben müssten. Wir
-        benötigen die Passphrase aber lediglich für den Hauptschlüssel
-        (die Unterschlüssel liegen am YubiKey). Wir nutzen ihn also
-        ohnehin nur selten und dann für einzelne Anwendungen (zB.: wenn
-        man einen Schlüssel signieren möchte). Je kürzer das Passwort
-        gecached wird desto besser.
-      - Das Anzeigen der "Experten-Einstellungen" ist zu empfehlen.
-  - Senden (Sending): Wir empfehlen die Standardeinstellungen zu
-    verwenden.
-      - Erläuterung: Zum Verschlüsseln empfehlen wir alle verwendbaren
-        Schlüssel zuzulassen. Das bewahrt Einen davor, Schlüssel
-        voreilig zu signieren, nur um mit dem Gegenüber verschlüsselte
-        Nachrichten austauschen zu können. Das Signieren fremder
-        Schlüssel darf nur nach Überprüfung des Fingerabdruckes auf
-        einem zweiten Kommunikationskanal erfolgen, über den auch die
-        Authentizität des Gegenüber sichergestellt ist\! Emails einfach
-        so zu verschlüsseln hat dann zumindest den Sinn, dass nicht
-        jeder im Internet die Email mitlesen kann, sondern nur der
-        Empfänger. Der ist halt leider nicht ganz sicher jener, der er
-        vorgibt zu sein.
-  - Schlüsselauswahl (Key Selection):
-      - Hier empfehlen wir die Kontrolle der ausgewählten Schlüssel vor
-        dem Senden immer auch manuell zu überprüfen\! Vielleicht hat
-        jemand einen zweiten Schlüssel für die gleiche Email Adresse.
-  - Erweitert (Advanced): Standardeinstellungen belassen.
-  - Schlüsselserver (Keyserver):
-      - Wir empfehlen aussschließlich Schlüsselserver, die eine
-        Email-Verifizierung durchführen: (Information dazu unter
-        [Verteilen von Schlüsseln](#verteilen-von-schlüsseln))
-      - \<code\> hkps:*keys.openpgp.org, hkps:*keys.mailvelope.com,
-        hkps://keyserver1.pgp.com/ \</code\>
-
-  
-Enigmail bietet außerdem noch Einstellungen, die spezifisch für jeden
-Mailaccount gesetzt werden müssen. Dafür öffnet man die zugehörigen
-Accounteinstellungen und navigiert auf den Reiter *OpenPGP Security*.
-Grundsätzlich geht es hier nicht unbedingt um sicherheitsrelevante
-Einstellungen. Vorsicht ist nur bei Autocrypt geboten: **Autocrypt
-unbedingt deaktivieren\!** Autocrypt versucht automatisiert Schlüssel
-mit anderen Autocrypt-fähigen System auszutauschen. Das geschieht ganz
-transparent für den Nutzer. So werden Schlüssel verwendet obwohl deren
-Authentizität nicht überprüft wurde\! <sup>[\[10\]](#quellen)</sup>
   
 ## FairEmail & OpenKeychain
 ![]({{ site.baseurl }}{{ page.dir }}img/0_fairemail_playstore.jpg)  
