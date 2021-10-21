@@ -60,12 +60,12 @@ zu installieren. Nachdem der Smartcard-Support auf GnuPG aufbaut, muss zusätzli
 
 Damit Thunderbird die benötigte libgpgme.dll findet, muss deren Pfad zum Speicherort in der Path-Umgebungsvariable gesetzt werden. Ganz einfach geht das über folgenden Befehl in einer Kommandozeile (cmd) mit Administratorrechten:
 
-```warning
-Dieser Befehl funktioniert AUSSCHLIESSLICH in der Kommandozeile (cmd) und nicht in der PowerShell! In der PowerShell fürht dieser Befehl zur Löschung der PATH-Variable! Abgesehen davon empfiehlt es sich zur Sicherheit die PATH-Variable vor der Veränderung zu sichern.
-```
-
 ``` bash
 setx /m PATH "C:\PfadZurGPGInstallation\Gpg4win\bin_64;%PATH%"
+```
+
+```warning
+Dieser Befehl funktioniert ausschließlich in der Kommandozeile (cmd) und nicht in der PowerShell! In der PowerShell führt dieser Befehl zur Löschung der PATH-Variable! Abgesehen davon empfiehlt es sich die PATH-Variable vor der Veränderung zu sichern.
 ```
 
 ### OpenPGP Einrichtung
