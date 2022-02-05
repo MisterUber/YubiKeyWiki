@@ -13,6 +13,7 @@ exclude:
   - Makefile
   - Gemfile
   - Gemfile.lock
+  - /img/
 
 plugins:
   - jemoji
