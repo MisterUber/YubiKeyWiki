@@ -13,6 +13,10 @@ Anlaufstelle für YubiKey-Einsteiger dienen und bietet neben der
 generellen Funktionsbeschreibung auch konkrete Einsatzbeispiele mit
 Anwendungsanleitungen und Sicherheitsempfehlungen.
 
+```note
+Du hast einen Fehler entdeckt oder möchtest einen weiteren Artikel zum Wiki hinzufügen? [Hier gehts zum How-To](https://github.com/MisterUber/YubiKeyWiki/wiki/Contribution)
+```
+
 ## Wiki-Struktur
 
 Das Wiki hat zwei Hauptartikel die für das Verständnis wichtig sind und
