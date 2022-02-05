@@ -7,7 +7,7 @@
 Beim "YubiKey Wiki" handelt es sich um ein Semsterprojekt im Rahmen des
 Studiums für Sichere Informationssysteme an der FH-Hagenberg. Das
 Projekt wurde von Alexander Hamann, Kristoffer Dorfmayr und Mathias
-Huber bearbeitet und hatte das Ziel, ein möglichst umfangreichen Wiki
+Huber bearbeitet und hatte das Ziel, ein möglichst umfangreiches Wiki
 rund um den YubiKey Security Token zu erstellen. Das Wiki soll als
 Anlaufstelle für YubiKey-Einsteiger dienen und bietet neben der
 generellen Funktionsbeschreibung auch konkrete Einsatzbeispiele mit
